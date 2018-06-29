@@ -5,6 +5,8 @@ import System.Web
 func main
                 mypage = new HtmlPage {
                         h1 { text("Customers Report") }
+			h2 { text("Date : " + date()) }
+			h2 { text("Time : " + time()) }
                         Table
                         {
                                 style = stylewidth("100%") + stylegradient(4)
