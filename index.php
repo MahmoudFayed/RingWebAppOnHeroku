@@ -6,6 +6,6 @@
 
 //include_once("report.html"); 
 
-system("startapp.sh") ;
+system("~/startapp.sh") ;
 
 ?>
