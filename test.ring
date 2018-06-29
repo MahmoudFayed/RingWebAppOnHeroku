@@ -1,5 +1,7 @@
 load "weblib.ring"
 
+import System.Web
+
 func main
                 mypage = new HtmlPage {
                         h1 { text("Customers Report") }
