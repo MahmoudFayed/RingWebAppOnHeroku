@@ -33,7 +33,7 @@ func main
                                 for x =  1 to 5
                                         TR
                                         {
-                                                TD { text("Test" )  }
+                                                TD { text("Test " + x )  }
                                                 TD { text("30" ) }
                                                 TD { text("Egypt" ) }
                                                 TD { text("Sales" ) }
