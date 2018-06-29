@@ -6,6 +6,6 @@
 
 //include_once("report.html"); 
 
-system("export LD_LIBRARY_PATH=~/ring/lib && ~/ring/bin/ring test.ring") ;
+system("./startapp.sh") ;
 
 ?>
