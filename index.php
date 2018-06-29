@@ -1,6 +1,6 @@
 <?php 
 
-include_once("index.html"); 
+// include_once("index.html"); 
 
 system("~/ring/bin/ringlang test.ring") ;
 
