@@ -28,7 +28,7 @@ func main
                                         TD { text("Job" ) }
                                         TD { text("Company" ) }
                                 }
-                                for x =  1 to 100
+                                for x =  1 to 5
                                         TR
                                         {
                                                 TD { text("Test" )  }
