@@ -1,2 +1,2 @@
-export LD_LIBRARY_PATH=~/ring/lib
+export LD_LIBRARY_PATH=~/ring/lib/
 ~/ring/bin/ring test.ring
