@@ -40,4 +40,4 @@ func main
                                 next
                         }
                 }
-            write("report.html",mypage.output())
+            ? mypage.output() 
