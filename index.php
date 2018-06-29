@@ -2,6 +2,8 @@
 
 // include_once("index.html"); 
 
-system("~/ring/bin/ringlang test.ring") ;
+exec("~/ring/bin/ringlang test.ring > output.html") ;
+
+include_once("output.html"); 
 
 ?>
