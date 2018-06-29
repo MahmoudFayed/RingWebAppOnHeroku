@@ -2,6 +2,6 @@
 
 include_once("index.html"); 
 
-echo exec("~/ring/bin/ringlang") ;
+system("~/ring/bin/ringlang") ;
 
 ?>
