@@ -1,7 +1,6 @@
 #!~/ring/bin/ringlang -cgi
 
 load "weblib.ring"
-
 import System.Web
 
 func main
