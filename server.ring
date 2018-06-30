@@ -23,9 +23,9 @@ func main
                 ? "Listen error " + uv_strerror(r)
                 return 1
         ok
-	? "before main loop"
+	? "Start Ring Server"
         uv_run(myloop, UV_RUN_DEFAULT)
-	? "After main loop"
+	? "End Ring Server"
         destroy_uv_tcp_t(server)
         destroy_uv_sockaddr_in(addr)
 	? "end of code!"
