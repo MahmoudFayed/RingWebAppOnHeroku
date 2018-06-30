@@ -72,7 +72,7 @@ func echo_read
                 buf = new_uv_buf_t()
                 set_uv_buf_t_len(buf,len(message))
                 set_uv_buf_t_base(buf,varptr("message","char *"))
-		uv_write(req, client, buf, 1, "echo_write()")
+		uv_write(req, client, buf, 1, "")
         ok
 
 func echo_write
