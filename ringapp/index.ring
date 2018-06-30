@@ -1,4 +1,4 @@
-#!/app/ring/bin/ringlang -cgi
+#!/app/ring/bin/ring -cgi
 
 Load "weblib.ring"
 Load "datalib.ring"
