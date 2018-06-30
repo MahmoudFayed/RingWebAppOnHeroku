@@ -1,1 +1,1 @@
-web: ~/ring/bin/ring server.ring
+web: runserver.sh
