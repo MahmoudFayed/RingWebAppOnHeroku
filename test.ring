@@ -1,4 +1,4 @@
-#!~/ring/bin/ringlang -cgi
+#!/ring/bin/ringlang -cgi
 
 load "weblib.ring"
 
