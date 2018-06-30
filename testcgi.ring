@@ -9,6 +9,9 @@ import System.Web
 func main
 
                 mypage = new WebPage {
+
+			h1 { text("Yes, You are using Ring from CGI on Heroku!") }
+
                         h1 { text("Customers Report") }
 			h2 { text("Date : " + date()) }
 			h2 { text("Time : " + time()) }
