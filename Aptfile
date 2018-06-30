@@ -1,5 +1,3 @@
-g++
-g++-multilib
 unixodbc
 unixodbc-dev
 libmysqlclient-dev
