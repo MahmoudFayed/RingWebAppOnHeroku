@@ -3,7 +3,7 @@
 Load "weblib.ring"
 Import System.Web
 
-cUploadPath = "/app/ringapp/upload/"
+cUploadPath = "/ringapp/upload/"
 cUploadFolder = "/app/ringapp/upload/"
 
 New page 
