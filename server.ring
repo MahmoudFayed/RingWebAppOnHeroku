@@ -5,6 +5,8 @@ load "libuv.ring"
 DEFAULT_PORT    = number(SysGet("PORT"))
 DEFAULT_BACKLOG = 1024
 
+? "Port Number: " + DEFAULT_PORT    
+
 addr    = new_sockaddr_in()
 server  = NULL
 client  = NULL
