@@ -16,7 +16,7 @@ func main
         myloop = uv_default_loop()
         server = new_uv_tcp_t()
         uv_tcp_init(myloop, server)
-        uv_ip4_addr("127.0.0.1", DEFAULT_PORT, addr)
+        uv_ip4_addr("http://testring.herokuapp.com", DEFAULT_PORT, addr)
         uv_tcp_bind(server, addr, 0)
         r = uv_listen(server, DEFAULT_BACKLOG, "newconnection()")
         if r
