@@ -68,17 +68,17 @@ func echo_read
 		
 		# Workaround - we must call uv_write() twice or the event loop will exit!
 		# 		And we must use the same (req)
-		message = ""
-                buf = new_uv_buf_t()
-                set_uv_buf_t_len(buf,len(message))
-                set_uv_buf_t_base(buf,varptr("message","char *"))
-		uv_write(req, client, buf, 1, "")
+		//message = ""
+                //buf = new_uv_buf_t()
+                //set_uv_buf_t_len(buf,len(message))
+                //set_uv_buf_t_base(buf,varptr("message","char *"))
+		//uv_write(req, client, buf, 1, "")
         ok
 
 func echo_write
         aPara = uv_Eventpara(client,:read)
         req   = aPara[1]
-	//? uv_close(req,"close_socket()")
+	? uv_close(req,"close_socket()")
 
 func close_socket
 	? "close socket"
