@@ -2,7 +2,7 @@ load "libuv.ring"
 
 ? "Testing RingLibuv - Server Side"
 
-DEFAULT_PORT    = SysGet("PORT")
+DEFAULT_PORT    = number(SysGet("PORT"))
 DEFAULT_BACKLOG = 1024
 
 addr    = new_sockaddr_in()
