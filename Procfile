@@ -1,1 +1,0 @@
-web: ./runring.sh
