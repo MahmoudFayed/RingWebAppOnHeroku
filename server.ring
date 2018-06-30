@@ -78,8 +78,7 @@ func echo_read
 func echo_write
         aPara = uv_Eventpara(client,:read)
         req   = aPara[1]
-	? uv_close(req,"close_socket()")
-	? "After uv_close() function"
+	//? uv_close(req,"close_socket()")
 
 func close_socket
 	? "close socket"
