@@ -1,4 +1,4 @@
-# In practice use a more useful commit message!
+REM In practice use a more useful commit message!
 
 git add .
 git commit -m "Update RingWebAppOnHeroku"
