@@ -2,7 +2,9 @@ Deploying Ring web application on Heroku (https://www.heroku.com/)
 
 Demo : http://testring.herokuapp.com
 
-To use this project and deploy it 
+# Usage
+
+To use this project and deploy it on Heroku 
 
 (1) Create Heroku account
 
@@ -18,13 +20,13 @@ Note (You have to select a unique name for your application)
 
 	cd MyApp	
 
-(5) Enter the next commands
+(5) Enter the next commands (change testring to your application name)
 
 	git clone https://github.com/MahmoudFayed/RingWebAppOnHeroku .
 
 	heroku login
 
-	heroku git:remote -a testring2
+	heroku git:remote -a testring
 
 	heroku buildpacks:add --index 1 https://github.com/MahmoudFayed/heroku-buildpack-apt
 	heroku buildpacks:add --index 2 https://github.com/MahmoudFayed/heroku-buildpack-ring
