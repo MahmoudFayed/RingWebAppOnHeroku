@@ -1,1 +1,0 @@
-load "opengl44lib.ring"

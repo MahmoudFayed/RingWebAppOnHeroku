@@ -1,1 +1,0 @@
-load "opengl46lib.ring"

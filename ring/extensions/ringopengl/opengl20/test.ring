@@ -1,1 +1,0 @@
-load "opengl20lib.ring"

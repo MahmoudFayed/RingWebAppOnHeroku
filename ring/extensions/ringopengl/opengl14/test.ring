@@ -1,1 +1,0 @@
-load "opengl14lib.ring"

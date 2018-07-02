@@ -1,1 +1,0 @@
-load "opengl13lib.ring"

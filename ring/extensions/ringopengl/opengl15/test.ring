@@ -1,1 +1,0 @@
-load "opengl15lib.ring"

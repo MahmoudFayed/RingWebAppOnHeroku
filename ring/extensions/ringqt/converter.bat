@@ -1,1 +1,0 @@
-start ringw ../../samples/tools/qtclass2ringcodegen/qtclass2ringcodegen.ring

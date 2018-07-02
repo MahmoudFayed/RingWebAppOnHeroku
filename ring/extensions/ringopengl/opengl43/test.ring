@@ -1,1 +1,0 @@
-load "opengl43lib.ring"

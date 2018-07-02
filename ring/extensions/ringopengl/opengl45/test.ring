@@ -1,1 +1,0 @@
-load "opengl45lib.ring"
