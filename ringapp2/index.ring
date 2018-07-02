@@ -25,10 +25,10 @@ Import System.Web
 
 website = "index.ring"
 
-cUploadPath = exefolder() + "../ringlibs/weblib/ringapp/upload/"
+cUploadPath = "/app/ringapp2/temp/"
 cUploadFolder = "/upload/"
 
-cPDFPath = exefolder() + "../ringlibs/weblib/ringapp/temp/"
+cPDFPath = "/app/ringapp2/temp/"
 cPDFFolder = "/temp/"
 
 
