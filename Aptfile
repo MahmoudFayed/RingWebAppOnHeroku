@@ -6,5 +6,6 @@ libssl-dev
 libpq-dev
 xvfb 
 libfontconfig
+libxcomposite-dev
 wkhtmltopdf
 :repo:deb http://cz.archive.ubuntu.com/ubuntu artful main universe
