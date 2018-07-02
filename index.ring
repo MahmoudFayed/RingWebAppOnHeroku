@@ -1,10 +1,10 @@
 #!/app/runring.sh -cgi
 
-Load "weblib.ring"
+load "weblib.ring"
 
-Import System.Web
+import System.Web
 
-New Page
+new Page
 {
 	script(scriptredirection("ringapp/index.ring"))  
 }
