@@ -4,4 +4,7 @@ libmysqlclient-dev
 libcurl4-gnutls-dev
 libssl-dev
 libpq-dev
+xvfb 
+libfontconfig
+wkhtmltopdf
 :repo:deb http://cz.archive.ubuntu.com/ubuntu artful main universe
