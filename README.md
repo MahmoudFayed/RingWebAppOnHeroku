@@ -49,4 +49,22 @@ change testring to your application name
 
 	heroku open
 
+# Database 
+
+When you depoly the application, Everything will works directly!
+
+No change is required, but in practice, You will need to update the next files to use your database 
+
+There are two scripts to interact with the database (We are using PostgreSQL in the cloud) 
+
+You will need to update the connection string in these files if you will use another database 
+
+* file: ringapp/database/newdb.ring (We run it using the browser for one time to create the tables)
+* file: ringapp/datalib.ring (Class: Database)
+
+In your practical projects, You can write better code (To be able to change the database)
+
+Also you can create configuration file (To write the connection string in one place)
+
+
 
