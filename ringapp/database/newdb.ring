@@ -7,61 +7,45 @@ Import System.Web
 
 New Page
 {
+	conninfo = "postgres://pzcwqusiacbqjf:221b14a6e438362bd88eb8bed7da1c89bd73da9ca56ded9e745f93e93221db13@ec2-107-21-224-61.compute-1.amazonaws.com:5432/d2qvnkkul8it1m?ssl=true"
 
+	exit_nicely = func conn {
+		PQfinish(conn)
+	}
 
-#conninfo = "user=postgres password=sa dbname=mahdb" 
-conninfo = "postgres://pzcwqusiacbqjf:221b14a6e438362bd88eb8bed7da1c89bd73da9ca56ded9e745f93e93221db13@ec2-107-21-224-61.compute-1.amazonaws.com:5432/d2qvnkkul8it1m?ssl=true"
+	conn = PQconnectdb(conninfo)
 
-exit_nicely = func conn {
-	PQfinish(conn)
-}
+	if (PQstatus(conn) != CONNECTION_OK)
+		text( "Connection to database failed: "+PQerrorMessage(conn) )
+			call exit_nicely(conn)
+	ok
 
-conn = PQconnectdb(conninfo)
+	res = PQexec(conn, "
+	CREATE TABLE salary (
+	  Id serial  NOT NULL ,
+	  Name text,
+	  Salary int DEFAULT NULL
+	);
+	")
 
-if (PQstatus(conn) != CONNECTION_OK)
-	text( "Connection to database failed: "+PQerrorMessage(conn) )
-        call exit_nicely(conn)
-ok
-
-/*
-res = PQexec(conn, "CREATE DATABASE mahdb;")
-if PQresultStatus(res) != PGRES_TUPLES_OK
-	fputs(stderr, "Create database failed: " + PQerrorMessage(conn))
 	PQclear(res)
-	//call exit_nicely(conn)
-ok
-*/
 
-res = PQexec(conn, "
-CREATE TABLE salary (
-  Id serial  NOT NULL ,
-  Name text,
-  Salary int DEFAULT NULL
-);
-")
+	res = PQexec(conn, "
+	CREATE TABLE users (
+	  id serial  NOT NULL,
+	  username text,
+	  pwhash text,
+	  salt text,
+	  sessionid text,
+	  email text
+	); 
+	")
 
+	PQclear(res)
 
-PQclear(res)
+	PQfinish(conn)
 
-
-res = PQexec(conn, "
-CREATE TABLE users (
-  id serial  NOT NULL,
-  username text,
-  pwhash text,
-  salt text,
-  sessionid text,
-  email text
-); 
-")
-
-
-PQclear(res)
-
-
-PQfinish(conn)
-
-        Text("Database Created!")
+	Text("Database Created!")
 }
 
 

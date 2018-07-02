@@ -12,7 +12,6 @@ Class Database
 
 	Func Connect
 
-		//con = PQconnectdb("user=postgres password=sa dbname=mahdb" )
 		con = PQconnectdb("postgres://pzcwqusiacbqjf:221b14a6e438362bd88eb8bed7da1c89bd73da9ca56ded9e745f93e93221db13@ec2-107-21-224-61.compute-1.amazonaws.com:5432/d2qvnkkul8it1m?ssl=true" )
 		if (PQstatus(con) != CONNECTION_OK)
 			raise("Error (DataLib-1) : Can't connect to the database server!")
@@ -72,56 +71,6 @@ Class Database
 		con 
 		res 
 		aMyQueryResult
-
-Class DatabaseMySQL
-
-	cServer = "localhost"
-	cUserName = "root"
-	cPassword = "root"
-	cDatabase = "mahdb"
-
-	Func Connect
-
-		con = mysql_init() 
-		if not mysql_connect(con, cServer, cUserName, cPassWord,cDatabase)
-			raise("Error (DataLib-1) : Can't connect to the database server!")
-		ok
-
-	Func Disconnect
-
-		mysql_close(con)
-
-	Func Query cQuery
-
-		mysql_query(con,cQuery)
-
-	Func QueryResult
-
-		return mysql_result(con)
-
-	Func QueryResultWithColumns
-		# return columns names + query result
-		return mysql_result2(con)
-
-	Func QueryValue
-		aResult = mysql_result(con)
-		if islist(aResult) and len(aResult) >= 1
-			aResult = aResult[1]
-			if len(aResult) >= 1
-				return aResult[1]
-			ok
-		ok
-		return 0
-
-	Func EscapeString x
-		if isstring(x)
-			return MySQL_Escape_String(con,x)
-		else
-			return MySQL_Escape_String(con,string(x))
-		ok
-
-	Private
-		con = NULL
 
 Class ModelBase from Database
 
