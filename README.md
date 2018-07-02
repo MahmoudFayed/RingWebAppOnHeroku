@@ -14,9 +14,13 @@ Note (You have to select a unique name for your application)
 
 (3) Open the command prompt, Create new folder : MyApp
 
-(4) Enter the next commands
+(4) Open the application folder
 
-git clone https://github.com/MahmoudFayed/RingWebAppOnHeroku .
+	cd MyApp	
+
+(5) Enter the next commands
+
+	git clone https://github.com/MahmoudFayed/RingWebAppOnHeroku .
 
 	heroku login
 
