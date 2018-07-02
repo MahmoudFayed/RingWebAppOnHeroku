@@ -16,6 +16,10 @@ Func TestRandom
 		divstart([ :style = styleFloatLeft() + styleWidth("400px") ])
 			newline()
 			aList = dir(cUploadPath)
+			if isLinux() 
+				del(aList,1) # remove .
+				del(aList,2) # remove ..
+			ok
 			if len(aList) > 0
 				nIndex = random(len(aList)) 
 				if nindex = 0 nIndex = 1 ok
