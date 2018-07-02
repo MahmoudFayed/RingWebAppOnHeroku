@@ -1,0 +1,1 @@
+Deploying Ring web application on Heroku
