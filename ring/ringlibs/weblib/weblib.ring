@@ -198,7 +198,7 @@ func HTML2PDF filepath,filefolder,cStr
 	cHTML = cFileName + ".html"
 	cPDF =  cFileName + ".pdf"
 	write(cHTML,cStr)
-	system("wkhtmltopdf " + cHTML + " " + cPDF)
+	system("./app/wkhtmltopdf " + cHTML + " " + cPDF)
 	New Page 
 	{  
 		text(cPDF)
