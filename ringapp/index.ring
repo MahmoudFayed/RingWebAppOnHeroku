@@ -1,5 +1,4 @@
 #!/app/runring.sh -cgi
-#!ring -cgi
 
 Load "weblib.ring"
 Load "datalib.ring"

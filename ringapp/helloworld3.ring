@@ -1,4 +1,4 @@
-#!ring -cgi
+#!/app/runring.sh -cgi
 
 load "weblib.ring"
 

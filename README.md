@@ -64,6 +64,20 @@ Right click ---> Properties ---> Git ---> Executable (+x)
 
 Then commit and deploy!
 
+# Hello World program 
+
+file : ringapp/helloworld2.ring 
+
+To run it : http://testring.herokuapp.com/ringapp/helloworld2.ring 
+
+	#!/app/runring.sh -cgi
+	load "weblib.ring"
+	import System.Web
+	new page {
+		text("Hello, World!")
+	}
+
+
 # Database 
 
 When you depoly the application, Everything will works directly!
@@ -81,5 +95,5 @@ In your practical projects, You can write better code (To be able to change the 
 
 Also you can create configuration file (To write the connection string in one place)
 
-
+Database service : https://www.heroku.com/postgres 
 
