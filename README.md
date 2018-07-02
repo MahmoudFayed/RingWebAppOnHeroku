@@ -118,14 +118,6 @@ file: build.bat contains the next commands for quick tests
 	git push heroku master
 	heroku open
 
-# Local tests using Ring Notepad on Windows (Using local Apache Web Server) 
-
-Replace the first line in the file : ringapp/index.ring with 
-
-	#!ring -cgi 
-
-Then run it from Ring Notepad (Ctrl+F6)
-
 # Ring Version  and RingPostgreSQL 
 
 This project uses Ring 1.8
@@ -136,6 +128,13 @@ To use RingPostgreSQL on other platforms
 
 You can build it from source code : https://github.com/ring-lang/ring/tree/master/extensions/ringpostgresql
 
+# Local tests using Ring Notepad on Windows (Using local Apache Web Server) 
+
+Replace the first line in the file : ringapp/index.ring with 
+
+	#!ring -cgi 
+
+Then run it from Ring Notepad (Ctrl+F6)
 
 
 
