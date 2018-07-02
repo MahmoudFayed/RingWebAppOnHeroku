@@ -7,5 +7,6 @@ libpq-dev
 xvfb 
 libfontconfig
 libxcomposite-dev
+libgl1-mesa-glx
 wkhtmltopdf
 :repo:deb http://cz.archive.ubuntu.com/ubuntu artful main universe
