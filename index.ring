@@ -1,1 +1,10 @@
-# Web Application using the Ring programming language 
+#!/app/ring/bin/ringlang -cgi
+
+Load "weblib.ring"
+
+Import System.Web
+
+New Page
+{
+	script(scriptredirection("ringapp/index.ring"))  
+}
