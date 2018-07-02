@@ -97,3 +97,14 @@ Also you can create configuration file (To write the connection string in one pl
 
 Database service : https://www.heroku.com/postgres 
 
+# Deploying after updates 
+
+Just use Git and commit then push to heroku 
+
+file: build.bat contains the next commands for quick tests 
+
+	git add .
+	git commit -m "Update RingWebAppOnHeroku"
+	git push heroku master
+	heroku open
+
