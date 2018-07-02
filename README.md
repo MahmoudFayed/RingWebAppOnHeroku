@@ -22,7 +22,7 @@ Note (You have to select a unique name for your application)
 
 	cd MyApp	
 
-(5) Clone this projet using Git
+(5) Clone this projet using Git (Don't forget the dot in the end to clone in the current directory)
 
 	git clone https://github.com/MahmoudFayed/RingWebAppOnHeroku .
 
