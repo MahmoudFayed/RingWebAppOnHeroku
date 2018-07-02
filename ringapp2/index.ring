@@ -29,7 +29,7 @@ cUploadPath = "/app/ringapp2/temp/"
 cUploadFolder = "/upload/"
 
 cPDFPath = "/app/ringapp2/temp/"
-cPDFFolder = "/temp/"
+cPDFFolder = "/ringapp2/temp/"
 
 
 Func Main
