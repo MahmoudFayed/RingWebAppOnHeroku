@@ -49,6 +49,21 @@ change testring to your application name
 
 	heroku open
 
+# Ring source code files and permissions 
+
+To be able to run your new Ring scripts, Set the permission of the file to be executable using Git 
+
+For example, if you created a file : myscript.ring 
+
+	git update-index --chmod=+x myscript.ring 
+	git commit -m "Update file permission" 	
+
+If you are using TortoiseGit, From windows explorer, select the file 
+
+Right click ---> Properties ---> Git ---> Executable (+x)
+
+Then commit and deploy!
+
 # Database 
 
 When you depoly the application, Everything will works directly!
