@@ -6,5 +6,6 @@ Import System.Web
 
 New Page
 {
-	script(scriptredirection("ringapp/index.ring"))  
+text("test")
+//	script(scriptredirection("ringapp/index.ring"))  
 }
