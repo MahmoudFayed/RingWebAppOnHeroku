@@ -73,7 +73,7 @@ To run it : http://testring.herokuapp.com/ringapp/helloworld.ring
 	#!/app/runring.sh -cgi
 
 	see "content-type: text/html" +nl+nl	
-	see "Hello World !" + nl
+	see "Hello, World!" + nl
 
 
 file : ringapp/helloworld2.ring 
@@ -117,4 +117,25 @@ file: build.bat contains the next commands for quick tests
 	git commit -m "Update RingWebAppOnHeroku"
 	git push heroku master
 	heroku open
+
+# Local tests using Ring Notepad on Windows (Using local Apache Web Server) 
+
+Replace the first line in the file : ringapp/index.ring with 
+
+	#!ring -cgi 
+
+Then run it from Ring Notepad (Ctrl+F6)
+
+# Ring Version  and RingPostgreSQL 
+
+This project uses Ring 1.8
+
+Also this distribution includes (RingPostgreSQL) 
+
+To use RingPostgreSQL on other platforms  
+
+You can build it from source code : https://github.com/ring-lang/ring/tree/master/extensions/ringpostgresql
+
+
+
 
