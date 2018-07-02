@@ -7,10 +7,7 @@ Class SalaryController From ControllerBase
 	aColumnsNames = ["id","name","salary"]
 
 	Func showtable
-		nTime = clock()
 		super.showtable()
-		nTime = clock() - nTime
-		see "Time : " + nTime + "ms"
 
 Class SalaryView From ViewBase
 
