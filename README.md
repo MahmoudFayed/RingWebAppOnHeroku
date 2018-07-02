@@ -66,6 +66,16 @@ Then commit and deploy!
 
 # Hello World program 
 
+file : ringapp/helloworld.ring 
+
+To run it : http://testring.herokuapp.com/ringapp/helloworld.ring 
+
+	#!/app/runring.sh -cgi
+
+	see "content-type: text/html" +nl+nl	
+	see "Hello World !" + nl
+
+
 file : ringapp/helloworld2.ring 
 
 To run it : http://testring.herokuapp.com/ringapp/helloworld2.ring 
