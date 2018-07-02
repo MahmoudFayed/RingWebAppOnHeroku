@@ -1,8 +1,79 @@
 Load "mysqllib.ring"
+Load "postgresqllib.ring"
 
 Import System.Web
 
 Class Database
+
+	cServer = "localhost"
+	cUserName = "root"
+	cPassword = "root"
+	cDatabase = "mahdb"
+
+	Func Connect
+
+		//con = PQconnectdb("user=postgres password=sa dbname=mahdb" )
+		con = PQconnectdb("postgres://pzcwqusiacbqjf:221b14a6e438362bd88eb8bed7da1c89bd73da9ca56ded9e745f93e93221db13@ec2-107-21-224-61.compute-1.amazonaws.com:5432/d2qvnkkul8it1m?ssl=true" )
+		if (PQstatus(con) != CONNECTION_OK)
+			raise("Error (DataLib-1) : Can't connect to the database server!")
+			PQfinish(con)
+		ok
+		
+	Func Disconnect
+
+		PQfinish(con)
+
+	Func Query cQuery
+		res = PQexec(con,cQuery)
+		aMyQueryResult = []
+		aResultRow = []
+		nFields = PQnfields(res)
+		for i = 1 to nFields
+		        aResultRow + PQfname(res, i-1) 
+		next
+		aMyQueryResult + aResultRow		
+		for i = 1 to PQntuples(res)
+			aResultRow = []
+			for j=1 to nFields
+				aResultRow + PQgetvalue(res, i-1, j-1) 
+			next
+			aMyQueryResult + aResultRow
+		next		
+		PQclear(res)
+
+		
+	Func QueryResult
+		aResult = aMyQueryResult 
+		del(aResult,1)
+		return aResult
+
+	Func QueryResultWithColumns
+		aResult = aMyQueryResult
+		return aResult
+
+	Func QueryValue
+		aResult = QueryResult()
+		if islist(aResult) and len(aResult) >= 1
+			aResult = aResult[1]
+			if len(aResult) >= 1
+				return aResult[1]
+			ok
+		ok
+		return 0
+
+	Func EscapeString x
+		if isstring(x)
+			return x
+		else
+			return string(x)
+		ok
+
+	Private
+		con 
+		res 
+		aMyQueryResult
+
+Class DatabaseMySQL
 
 	cServer = "localhost"
 	cUserName = "root"
@@ -102,13 +173,13 @@ Class ModelBase from Database
 
 	Func Read nStart,nRecordsPerPage
 
-		query("SELECT * FROM "+ cTableName+" limit " + EscapeString(nStart) + "," + EscapeString(nRecordsPerPage) )
+		query("SELECT * FROM "+ cTableName+" limit " + EscapeString(nRecordsPerPage) + " offset " + EscapeString(nStart) )
 		aQueryResult = queryResult()
 
 	Func Search cValue,nStart,nRecordsPerPage
 
 		query("SELECT * FROM "+ cTableName+" where "+cSearchColumn+" like '" + EscapeString(cValue) + "%'" +
-			" limit " + EscapeString(nStart) + "," + EscapeString(nRecordsPerPage) )
+			" limit " + EscapeString(nRecordsPerPage) + " offset " + EscapeString(nStart) )
 		aQueryResult = queryResult()
 
 	Func Find nID
@@ -156,7 +227,7 @@ Class ModelBase from Database
 	Func LoadModel
 
 		# create the columns array
-		query("SELECT * FROM "+ cTableName + " limit 0,1")
+		query("SELECT * FROM "+ cTableName + " limit 1 offset 0")
 		aQueryResult = QueryResultWithColumns()[1]
 		for x = 2 to len(aQueryResult)
 			aColumns + lower(trim(aQueryResult[x]))

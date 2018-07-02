@@ -1,4 +1,5 @@
 #!/app/runring.sh -cgi
+#!ring -cgi
 
 Load "weblib.ring"
 Load "datalib.ring"
@@ -24,11 +25,11 @@ Import System.Web
 
 website = "index.ring"
 
-cUploadPath = exefolder() + "../ringlibs/weblib/ringapp/upload/"
-cUploadFolder = "/upload/"
+cUploadPath = "/app/ringapp/upload/"
+cUploadFolder = "/ringapp/upload/"
 
-cPDFPath = exefolder() + "../ringlibs/weblib/ringapp/temp/"
-cPDFFolder = "/temp/"
+cPDFPath = "/app/ringapp/temp/"
+cPDFFolder = "/ringapp/temp/"
 
 
 Func Main
