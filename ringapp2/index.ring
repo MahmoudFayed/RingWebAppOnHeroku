@@ -26,7 +26,7 @@ Import System.Web
 website = "index.ring"
 
 cUploadPath = "/app/ringapp2/temp/"
-cUploadFolder = "/upload/"
+cUploadFolder = "/ringapp2/upload/"
 
 cPDFPath = "/app/ringapp2/temp/"
 cPDFFolder = "/ringapp2/temp/"
