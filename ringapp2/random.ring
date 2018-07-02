@@ -17,8 +17,8 @@ Func TestRandom
 			newline()
 			aList = dir(cUploadPath)
 			if isLinux() 
-				del(aList,1) # remove .
-				del(aList,2) # remove ..
+				del(aList,find(aList,"."))
+				del(aList,find(aList,".."))
 			ok
 			if len(aList) > 0
 				nIndex = random(len(aList)) 
