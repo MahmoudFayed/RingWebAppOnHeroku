@@ -80,18 +80,3 @@ Func RunCode
 	cCode = substr(cCode,"+ nl"," see '<br/>'")
 	cCode = substr(cCode,"+nl"," see '<br/>'")
 	eval(cCode)
-
-Func System
-	errormsg("You can't use the system() function!")
-
-Func ErrorMsg x
-	BootStrapWebPage()  
-	{
-		div {
-			text("Sorry!")
-		}
-		div {
-		 	style = stylesizefull()+stylecolor("black")+stylegradient(60)+stylefontsize("16px ") 
-			text(x)		
-		}
-	}
