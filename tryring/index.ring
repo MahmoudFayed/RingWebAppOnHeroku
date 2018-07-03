@@ -21,7 +21,8 @@ Func Main
 
 Func MainPage
 
-	BootStrapWebPage() 
+	//BootStrapWebPage() 
+	new webpage
 	{
 		Title = "The Ring Programming Language"
 		//html(template("main.html",NULL))
@@ -74,7 +75,8 @@ Func MainPage
 
 Func RunCode			
 
-	BootStrapWebPage() 
+	//BootStrapWebPage() 
+	new webpage
 	{
 		Title = "Program Output"		
 	}
@@ -87,7 +89,8 @@ Func System
 	errormsg("You can't use the system() function!")
 
 Func ErrorMsg x
-	BootStrapWebPage()  
+	//BootStrapWebPage()  
+	new webpage
 	{
 		div {
 			text("Sorry!")
