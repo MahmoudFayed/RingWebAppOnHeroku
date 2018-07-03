@@ -24,7 +24,7 @@ Func MainPage
 	BootStrapWebPage() 
 	{
 		Title = "The Ring Programming Language"
-		html(template("main.rhtml",NULL))
+		//html(template("main.rhtml",NULL))
 		div {
 			classname = :container
 			div
@@ -69,7 +69,7 @@ Func MainPage
 			}
 
 		}
-		html(template("footer.rhtml",NULL))
+		//html(template("footer.rhtml",NULL))
 	}
 
 Func RunCode			
