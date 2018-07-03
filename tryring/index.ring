@@ -6,6 +6,9 @@ Import System.Web
 
 website = "index.ring"
 
+new webpage { text("Wow") } return
+
+
 Func Main
  		
 		if aPageVars["page"] = NULL
