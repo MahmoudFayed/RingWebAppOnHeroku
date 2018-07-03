@@ -6,7 +6,7 @@ Import System.Web
 
 website = "index.ring"
 
-//Func Main
+Func Main
  		
 		if aPageVars["page"] = NULL
 			mainpage()	
@@ -24,7 +24,7 @@ Func MainPage
 	BootStrapWebPage() 
 	{
 		Title = "The Ring Programming Language"
-		html(template("main.html",NULL))
+		html(template("/app/tryring/main.html",NULL))
 		div {
 			classname = :container
 			div
@@ -69,7 +69,7 @@ Func MainPage
 			}
 
 		}
-		html(template("footer.html",NULL))
+		html(template("/app/tryring/footer.html",NULL))
 	}
 
 Func RunCode			
