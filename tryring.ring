@@ -4,7 +4,7 @@ Load "weblib.ring"
 
 Import System.Web
 
-website = "index.ring"
+website = "tryring.ring"
 
 Func Main
  		
@@ -21,8 +21,7 @@ Func Main
 
 Func MainPage
 
-	//BootStrapWebPage() 
-	new webpage
+	BootStrapWebPage() 
 	{
 		Title = "The Ring Programming Language"
 		//html(template("main.html",NULL))
@@ -75,8 +74,7 @@ Func MainPage
 
 Func RunCode			
 
-	//BootStrapWebPage() 
-	new webpage
+	BootStrapWebPage() 
 	{
 		Title = "Program Output"		
 	}
@@ -89,8 +87,7 @@ Func System
 	errormsg("You can't use the system() function!")
 
 Func ErrorMsg x
-	//BootStrapWebPage()  
-	new webpage
+	BootStrapWebPage()  
 	{
 		div {
 			text("Sorry!")
