@@ -1,6 +1,7 @@
 ﻿#!/app/runring.sh -cgi
 
 Load "weblib.ring"
+
 Import System.Web
 
 website = "index.ring"
