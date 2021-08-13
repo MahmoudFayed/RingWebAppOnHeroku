@@ -120,13 +120,7 @@ file: build.bat contains the next commands for quick tests
 
 # Ring Version  and RingPostgreSQL 
 
-This project uses Ring 1.8
-
-Also this distribution includes (RingPostgreSQL) 
-
-To use RingPostgreSQL on other platforms  
-
-You can build it from source code : https://github.com/ring-lang/ring/tree/master/extensions/ringpostgresql
+This project uses Ring 1.14 
 
 # Local tests using Ring Notepad on Windows (Using local Apache Web Server) 
 
