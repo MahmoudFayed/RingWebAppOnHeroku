@@ -4,4 +4,4 @@ libmysqlclient-dev
 libcurl4-gnutls-dev
 libssl-dev
 libpq-dev
-:repo:deb http://mirror.cov.ukservers.com/ubuntu/ artful main universe
+:repo:deb http://old-releases.ubuntu.com/ubuntu artful main universe
