@@ -1,4 +1,3 @@
-Load "mysqllib.ring"
 Load "postgresqllib.ring"
 
 Import System.Web
