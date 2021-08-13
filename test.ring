@@ -4,5 +4,5 @@ load "weblib.ring"
 import System.Web
 new Page
 {
-	text("Hello")
+	text("Hello World!")
 }
