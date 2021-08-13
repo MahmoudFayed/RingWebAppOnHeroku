@@ -1,0 +1,9 @@
+<runcode>
+
+aNumberTypes + "qreal"
+aNumberTypes + "qint64"
+aNumberTypes + "ushort"
+aNumberTypes + "ulong"
+aNumberTypes + "uint"
+
+</runcode>

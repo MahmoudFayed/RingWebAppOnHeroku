@@ -1,0 +1,1 @@
+File used by the Ring Package Manager to know that we are using Ubuntu Linux.

@@ -1,1 +1,0 @@
-load "/../extensions/ringqt/guilib.ring"

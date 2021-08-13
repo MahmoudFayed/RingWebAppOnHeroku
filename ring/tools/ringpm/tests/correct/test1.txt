@@ -1,0 +1,17 @@
+===========================================================================
+Ring Package Manager (RingPM)
+2018-2019, Mahmoud Fayed <msfclipper@yahoo.com>
+===========================================================================
+Usage   : ringpm [command]
+Command :  [keywords...]
+Command :  : Update the Registry (Packages List)
+Command :  [ <packagename> [from <UserName>] [branch <branchname>] ]
+Command :  [-u : Check updates]
+Command :  [packagename]
+Command :  <packagename>
+Command :  <packagename>
+Command :  : Delete All Packages
+Command :  <packagename>
+Command :  : Create package in the current folder
+===========================================================================
+search refreshinstalllist   run    update remove format new    package

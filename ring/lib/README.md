@@ -1,3 +1,6 @@
-In this folder we store the library files.
+Ring programming language - Lib folder
+======================================
 
-Don't commit the library files, just keep this folder empty.
+In this folder we will store the library files.
+
+Don't commit the library files, just keep this folder empty!

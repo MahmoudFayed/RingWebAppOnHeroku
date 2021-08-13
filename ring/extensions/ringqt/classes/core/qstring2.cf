@@ -1,0 +1,35 @@
+<class>
+name: QString2
+para: void
+codename: QString
+managed
+</class>
+
+QString append( QString  str)
+QByteArray toUtf8(void)
+QByteArray toLatin1(void)
+QByteArray toLocal8Bit(void)
+QStringList split( QString  sep, QString::SplitBehavior behavior , Qt::CaseSensitivity cs )
+QStringList split@2(QChar sep, QString::SplitBehavior behavior , Qt::CaseSensitivity cs )
+QStringList split@3( QRegExp  rx, QString::SplitBehavior behavior )
+QStringList split@4( QRegularExpression  re, QString::SplitBehavior behavior )
+QChar * unicode(void)
+QString number(ulong n, int base)
+int count(void)
+QString left(int n)
+QString mid(int position, int n)
+QString right(int n)
+int compare(QString  other, Qt::CaseSensitivity cs )
+bool contains(QString  str, Qt::CaseSensitivity cs )
+int indexOf(QString str,int from,Qt::CaseSensitivity cs )
+QString insert(int position,  QString  str)
+bool isRightToLeft(void)
+QString repeated(int times)
+QString replace(int position, int n,  QString  after)
+bool startsWith( QString  s, Qt::CaseSensitivity cs )
+bool endsWith( QString  s, Qt::CaseSensitivity cs )
+QString toHtmlEscaped(void)
+void clear(void)
+bool isNull(void)
+void resize(int size)
+QString fill(QChar ch, int size)

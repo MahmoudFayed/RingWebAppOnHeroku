@@ -1,0 +1,463 @@
+========================
+Package Manager (RingPM)
+========================
+
+Start ---> [Ring Compiler + VM + StdlibCore + RingLibCurl + RingInternet] < 2 Mbyte
+	   Without (Libraries|Extensions|Applications)		> 1.1 GByte
+
+=======
+Advices
+=======
+
+1 - (Start working on Common Cases First - Not General)
+2 - (Start with simple methods and simple soltions)
+3 - (Don't keep attacking the main problem (Development) )
+ 	---> After each step - Stop and revise your work first!
+		(1) Your next steps will be faster 
+		(2) You will Enjoy more!
+	Using (ringpm) instead of (ring ringpm.ring) ---> Faster 
+	Using different files 	---> More Organization 
+				---> Manage Complexity
+4 - Testing is important ---> Start writing tests in early stages as possible 
+5 - Select good names for (File, Functions, Variables, etc)	
+6 - Using (ring filename.ring) is faster for development 
+	---> We move from coding to execution (fast)
+	But writing the file name is slow
+	---> Batch Files is faster 
+7 - Before you start programming, Try to be in good mode 
+	because most of **hard bugs** is a result of bad mode 
+		1 - Social Problem 
+		2 - Fixing Bug (While You are not Happy)
+		3 - Deadline 
+	Good Mode (Happy) ---> Careful - Focus - Better Code 
+8 - Ring is designed so we can switch between programming paradigms with little 
+	changes to the code 
+9 - Be careful when using the Global Variables 
+	Updating global variables from many places ---> Increase Complexity
+10- Write tests that cover the Use-Cases in details 
+
+=============================================
+How we will know about the installed packages 
+=============================================
+
+(1) Get list of "package.ring" files ---> Know installed packages from these files 
+
+	Good 	--> (1) Easy to implement
+		    (2) Easy to insert packages 
+		    (3) We don't repeat the package information 
+	Bad 	--> (1) Depend on folders structures 
+		    (2) Folders and Files processing to get the info (Slow?)
+				---> Not big problem (We have fast machines)
+
+
+==================
+RingPM Executable		---> DONE
+==================
+
+sysargv list ---> Get parameters from the command line 
+
+(1) When we run the app. using ring.exe 
+
+	ring ringpm.ring  <para>
+		first para : ring.exe 
+		second para : ringpm.ring 
+		<our program parameters> 
+
+	ringpm <para> 
+		first para : ringpm.exe 
+		<our program parameters>
+
+(2) ringpm.exe ----> Will need runtime files 
+			ring.dll	---> We can avoid it using -static option in Ring2EXE
+			libCurl dlls
+	ring/bin folder (Beside the runtime files)
+
+	We have ring/bin in System PATH	
+
+=================================
+Adding branch name to the Path?
+=================================
+	
+	(1) Add the branch name to the file System 
+		b:\ring\ringpm\local/firstpackage/master/package.ring
+
+	(2) Update Code 	(Better Decision)
+		2.1 - Don't add the Master folder to the Path
+		2.2 - Use (git command) to change the branch 
+
+			git checkout master 
+			git checkout firstpackage-1.1-branch 
+
+
+
+===============
+Update Command 
+===============
+
+ringpm update <package_name>
+
+ringpm update all	---> Update All Packages 
+
+================
+Delete Package 
+================
+
+ringpm remove <package_name>
+
+	first package 
+	second package ---->First Package 
+	Third Package  ---->Second Package 
+
+ringpm remove firstpackage ----> Error (Package used by Second Package)
+ringpm remove secondpackage ---> Error (Package used by Third Package)
+ringpm remove thirdpackage 
+		-> Remove (ThirdPackage, SecondPackage, FirstPackage)
+
+[The First Way]
+	Get all package.ring files ---> List 
+		Package Name , [List Packages that use this package] 
+	(N * N) times  ---> How much time for each item? 
+		Not very good for performance!
+
+[The Second Way]
+	Packages File that we need to update when (Install - Remove - Update)
+		Installed Package Name , [List Packages that use this package] 
+	
+================
+Install Package 
+================
+
+	ringpm install <package_name>
+		
+	ringpm install thirdpackage 
+			ThirdPackage ---> SecondPackage ---> FirstPackage
+			
+	Install related packages first, if we have error (cancel operation)		 	
+
+	InstallPackage() ----> ErrorFlag 
+		Start ----> ErrorFlag = False 	# NO Error 
+		Error ----> ErrorFlag = True	# We have error 
+	But we have nested call for InstallPackage()
+		We can't use this flag in this simple way
+
+	Two Common Solution
+		(1) Check the flag directly after calling installpackage()
+			installpackage()
+			if ErrorFlag = True return ok
+		(2) Use a Counter (ErrorFlag++)
+			---> Application (Still Live)
+			We don't use this in the Package Manager 
+			Because the Package Manager will exit after executing each command
+				---> No more operations!
+
+
+===============
+Lock File 
+===============
+
+	ringpm install thirdpackage 
+		ThirdPackage ---> SecondPackage ---> FirstPackage 
+
+	lock.ring 	for ThirdPackage
+		[ 
+			[:name = "thirdpackage" , :version = "1.0.0"],
+			[:name = "secondpackage", :version = "1.0.1"],
+			[:name = "firstpackage" , :version = "1.2.0"]
+		]
+
+	lock.ring 	for SecondPackage
+		[ 
+			[:name = "secondpackage", :version = "1.0.1"],
+			[:name = "firstpackage" , :version = "1.2.0"]
+		]
+
+	lock.ring 	for FirstPackage
+		[ 
+			[:name = "firstpackage" , :version = "1.2.0"]
+		]
+
+	(1) Each package add it's information in the start of the lock file
+
+	(2) Each package return it's lock information to caller (Parent Package)
+
+	(3) Each package write the lock file after installation 
+
+=================
+Dependency Tree 
+=================
+
+					[A]
+			[B]				[C]
+
+			[D]				[D]
+	(Case 1)	v 1.0				v 1.2	Different Versions.
+	(Case 2)	v 1.0				v 1.0   The Same Version
+
+	Lock File 	(Different Version)
+			A
+			B
+			D	v 1.0
+			C
+			D	v 1.2 
+
+	Lock File 	(Same Version)
+
+			A
+			B
+			D	v 1.0
+			C
+
+=====================
+List Command 
+=====================
+
+	Goal : (Checking for updates ---> Optional)
+
+	ringpm list -u		---> Check updates 
+
+	ringpm list		= (Fast list - Don't check updates)
+
+
+==============================================
+How to avoid the cPackageURL (Global Variable)
+==============================================
+
+	cPackageURL --- { GetPackageFile() , DownloadPackageFiles() }
+
+		GetPackageFile() ---> Define Variable
+		DownloadPackageFiles() ---> Use 
+			called by GetPackage()
+
+	GetPackage()
+			call GetPackageFile() ---> Define Variable
+			DownloadPackageFiles() ---> Use 
+
+		Scope ( Local | Object State | Global )
+
+	(1) Keep using Global Variable 
+		But Save/Restore cPackageURL in GetPackage()
+			---> Just 2 lines of code 
+
+	(2) Use Local Variable 		---> Ignore 
+		**** Looks like a Simple Solution ****
+			But, We will keep passing cPackageURL many times 
+			Or we will return it from the function 
+				---> Not good for the API
+
+	(3) Class ---> OBJECT ( Object State )
+
+		We created the InstallCommand Class 		
+
+==================================
+Installing from different branches 
+==================================
+
+
+	Install Package ---> (master) branch
+	Installing from different branch (like v0.9 , v1.2, etc)
+
+	----> Install (Old Version) 
+
+	Example:
+
+		Developer ---> Developed an application (2 years ago)
+		User ---> Need simple update 
+
+		Developr ---> Using (Package D) - version 0.9
+		Current Version (Package D) - version 1.0 
+			--> Breaking Changes 
+
+	Two Solutions 
+
+		(1) Update Code ---> from version 0.9 to 1.0
+			---> Need Time 
+		(2) Using old version ---> v0.9
+			---> Don't have time 
+			     The budget is low 
+			     No practical need for update 
+
+	Two Features 
+
+		(1) Install Old Version ---> (Install from specific branch)
+		(2) Install more than one version from the same package 
+
+
+	ringpm install <package_name> [ branch <branch_name> ]
+
+	ringpm install d branch v0.9
+		
+=======================
+Delete All Packages
+=======================
+
+	(1) ringpm remove all  	----> Ignore 
+					So we can have a package with the name "all"
+
+	(2) ringpm format 
+
+
+=======================
+Main Goal
+=======================
+
+		* Install Packages ---> Keep packages up to date 
+
+		* Avoid Dependency Hell 
+		
+			Package (A) -----> Need Package (B) 
+							v.   1.2
+			Package (C) -----> Neeed Package (B)
+							v.   2.1
+
+			Using v. 1.2 ----> For Package (C) (Old Version!)
+			Using v. 2.1 ----> For Package (A) (New Version!)
+	
+			RingPM Support installing multiple versions of the same package 
+
+		* Updates ----> Semantic Versioning 
+
+			Version  Major.Minor.Patch 
+				 1.2.1
+
+			Before version 1.0 ---> In Range ( v 0.0.0 ---> 0.x.x ) 
+					New version is not compatibile with old version 
+		
+			From Version 1.0.0 (Major.Minor.Patch)
+			
+			Increase Patch number ---> Fixing bugs 
+			Increase Minor number ---> Adding features & improvements 
+			Increase Major number ---> Breaking Compatibility 
+
+			v 1.0.0 ------ < 2.0.0
+			v 1.9.5 works (No breaking changes)
+
+		* Without semantic versioning ---> We don't have any information about the future 
+						   of libraries and their API
+
+			In this case we have two options 
+
+				(1) Use Specific Version (No Updates - Version Lock)
+					---> Not good for security & solving bugs 
+				(2) Always Update to newer version 
+					---> This may break the software at some point 
+
+		* With Semantic Versioning 
+				(1) We get updates that works 
+				(2) We avoid breaking our software 
+
+		* Important Note 
+
+				(1) Using Semantic Versioning is not enough 
+				(2) Sometimes developers don't follow the rules 
+				(3) Semantic Versioning works around API changes (Not Behavior)
+
+		* In RingPM to follow semantic versioning 
+
+				(1) Support installing more than one version from the same package
+				(2) Add the version name to the package folder 
+				(3) Take semantic versioning in mind when checking for updates 
+
+===========================
+Easy loading for packages 
+===========================
+
+		We don't like using relative path 
+			# load "../y-0.9.0/lib.ring"
+			# load "../z/lib.ring"
+			
+		We need to support writing the package|library name directly 
+			# load "y-0.9.0.ring"
+			# load "z.ring"
+			
+		As we did with the standard Ring libraries 
+			# load "stdlib.ring"  #	===> ring/ringlibs/stdlib/stdlib.ring
+			# load "guilib.ring"  #	===> ring/extensions/ringqt/guilib/guilib.ring
+			
+
+		Our Solution 
+
+			Create y-0.9.0.ring in ring/bin folder 
+				load "/../ringpm/packages/y-0.9.0/lib.ring"
+
+			Create z.ring in ring/bin folder 
+				load "/../ringpm/packages/z/lib.ring"
+
+		Test 
+			mylib.ring ---> ring/bin 
+				load "/../ringpm/packages/mylib/lib.ring"
+
+=================
+Packages Registry
+=================
+
+	List of packages [ Package Name , Developer, Email, Description, 
+				ProviderUserName, ProviderWebsite (GitHub) ]
+
+	registry.ring ====> Contains list of All Packages 
+		aPackages = [
+			[ :name = "Package Name",
+			  :description = "Package Description",
+			  :developer = "Mahmoud", Email = "...",
+			  :ProviderUserName = "MahmoudFayed",
+			  :ProviderWebsite = "GitHub"
+			]
+		]
+
+	ringpm search <keywords...>
+	ringpm install <package_name>
+			(1) Search in the Local Folder (ringpm/local) 
+			(2) if not found 
+				----> Check for registry.ring updates 
+				----> Search in the registry.ring file
+
+	We expect package description to be from 200 to 500 bytes 
+
+	How many packages we expect in the registry?
+
+		Current State ---> Expect from 1000 to 2000 packages 
+				  To cover (Samples, Applications, Libraries, Extensions, etcs)
+
+		Next stage ----> We expect 10,000 packages 
+
+		Third stage ----> 100,000 packages 
+
+		Top languages ---> 500,000 packages ----> 1000,000 packages 
+
+
+	Expected registry.ring size = (10,000 * 500 bytes) = 5000000 bytes (Less than 5 MBytes)
+			100,000 packages = 50 MBytes 
+			1000,000 packages = 500 MBytes
+
+	Using download() to check the file each time is not practical 
+
+	So we will add another file beside registry.ring to include the revision number  
+
+		rev.ring ----> rev = 1		( or version.ring )
+	When we update the registry.ring file, we will increment the revision counter
+				rev++ 
+
+	But we expect many updates to the package index (Maybe each day/week ?)
+
+		So, after each revision, We will create a file with the new updates only 
+
+		update_rev1.ring 
+		update_rev2.ring 
+ 	
+	But the updates may include updating current packages data, removing a package 
+		So we may need more control in the update file. 
+
+	Another solution 
+
+		Keep the large file ---> Don't think about little updates 
+		But update only based on the user decision 
+
+			(Lazy Solution) 
+
+		Or update each 7 days 
+
+	ringpm refresh ----> Update the registry (Packages List)
+
+		version.ring 
+			nRegistryRev  		= 1
+			cRegistryLastUpdate 	= "2018/11/20"
+			nPackagesCount 		= 3	# (firstpackage, secondpackage, thirdpackage)
