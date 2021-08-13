@@ -5,4 +5,5 @@ import System.Web
 new Page
 {
 	text("Just a test!")
+	text("Another line!")
 }
