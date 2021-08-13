@@ -2,6 +2,10 @@ Deploying Ring web application on Heroku (https://www.heroku.com/)
 
 Demo : http://testring.herokuapp.com
 
+# Ring Version
+
+This project uses Ring 1.14 
+
 # Usage
 
 To use this project and deploy it on Heroku 
@@ -117,10 +121,6 @@ file: build.bat contains the next commands for quick tests
 	git commit -m "Update RingWebAppOnHeroku"
 	git push heroku master
 	heroku open
-
-# Ring Version  and RingPostgreSQL 
-
-This project uses Ring 1.14 
 
 # Local tests using Ring Notepad on Windows (Using local Apache Web Server) 
 
