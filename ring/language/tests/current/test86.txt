@@ -1,5 +1,2 @@
-aitems: [This Attribute Contains A List]
-
-aitems: [This Attribute Contains A List]
-
-
+Instruction : I want window
+Instruction : Window Title = hello world

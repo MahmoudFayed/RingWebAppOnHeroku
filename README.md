@@ -4,7 +4,11 @@ Demo : http://testring.herokuapp.com
 
 # Ring Version
 
-This project uses Ring 1.14 
+This project uses Ring 1.18 
+
+# Heroku Stack
+
+This project tested using Heroku-22 (Ubuntu 22.04)
 
 # Usage
 

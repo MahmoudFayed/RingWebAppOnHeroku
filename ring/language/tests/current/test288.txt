@@ -1,1 +1,5 @@
-wow
+NUMBER
+STRING
+LIST
+OBJECT
+file

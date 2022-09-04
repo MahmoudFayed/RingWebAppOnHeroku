@@ -35,6 +35,7 @@
 <loadfile> widgets/qspinbox.cf
 <loadfile> widgets/qabstractslider.cf
 <loadfile> widgets/qslider.cf
+<loadfile> core/qdateedit.cf
 <loadfile> widgets/qdatetimeedit.cf
 <loadfile> widgets/qabstractspinbox.cf
 <loadfile> widgets/qdial.cf
@@ -68,6 +69,7 @@
 <loadfile> widgets/qcompleter.cf
 <loadfile> widgets/qcompleter2.cf
 <loadfile> widgets/qcompleter3.cf
+<loadfile> widgets/qcompleter4.cf
 <loadfile> widgets/qmdiarea.cf
 <loadfile> widgets/qmdisubwindow.cf
 <loadfile> widgets/qlistview.cf
@@ -79,6 +81,7 @@
 <loadfile> widgets/qscrollbar.cf
 <loadfile> widgets/qgraphicsview.cf
 <loadfile> widgets/qgraphicsscene.cf
+<loadfile> widgets/qstyle.cf
 
 <filter> ((iswindows()) and sysget("RINGQT_ANDROID") = "")
 <loadfile> widgets/qopenglwidget.cf

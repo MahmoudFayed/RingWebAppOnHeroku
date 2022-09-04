@@ -4,11 +4,21 @@
     Date        =>  4-12-2020
 */
 
-#define WIN32_LEAN_AND_MEAN
+/*
+	Modified for MonoRing integration.
+	Mounir IDRASSI (mounir@idrix.fr)
+	April 30th 2022
+*/
 
-#include "ring.h"
+#if defined _WIN32
+	#define WIN32_LEAN_AND_MEAN
+#endif
+
 #include "sockets.h"
 
+#ifdef win
+BOOL g_bWinsockInitialized = FALSE;
+#endif
 
 void ring_vm_socket_init(void *pPointer) {
 
@@ -33,12 +43,12 @@ void ring_vm_socket_init(void *pPointer) {
         proto = (int) RING_API_GETNUMBER(3);
     }
 
-    RING_SOCKET *sock = (RING_SOCKET *) ring_state_malloc(((VM *) pPointer)->pRingState,sizeof(RING_SOCKET));
+    RING_SOCKET *sock = (RING_SOCKET *) RING_API_MALLOC(sizeof(RING_SOCKET));
 
 #ifdef win
-    WSADATA data;
     sock->addr = NULL;
-	if (WSAStartup(MAKEWORD(2, 2), &data) != 0) {
+	if (!g_bWinsockInitialized) {
+		RING_API_FREE(sock);
 		RING_API_ERROR("WSAStartup Failed");
 		return;
 	}
@@ -52,8 +62,7 @@ void ring_vm_socket_init(void *pPointer) {
 
     if((sock->sockfd = socket(sock->hints.ai_family,sock->hints.ai_socktype,sock->hints.ai_protocol)) == INVALID_SOCKET) {
         RING_API_ERROR("Sock Init Failed");
-        closesocket(sock->sockfd);
-        WSACleanup();
+		RING_API_FREE(sock);
         return;
     }
 
@@ -64,7 +73,7 @@ void ring_vm_socket_init(void *pPointer) {
 
     if((sock->sockfd = socket(sock->addr.sin_family,type,proto)) == 0) {
         RING_API_ERROR("Sock Init Failed");
-        close(sock->sockfd);
+		RING_API_FREE(sock);
         return;
     }
 
@@ -91,8 +100,7 @@ void ring_vm_socket_setsockopt(void *pPointer) {
     int level, optname, value;
 
 #ifdef win
-    WSADATA data;
-	if (WSAStartup(MAKEWORD(2, 2), &data) != 0) {
+	if (!g_bWinsockInitialized) {
 		RING_API_ERROR("WSAStartup failed");
 		return;
 	}
@@ -106,9 +114,6 @@ void ring_vm_socket_setsockopt(void *pPointer) {
     if(setsockopt(sock->sockfd,level,optname,(const char *)&value,sizeof(value))) 
     {
         RING_API_ERROR("Set Socket Option Failed");
-        #ifdef win
-            WSACleanup();
-        #endif
         return;
     }
 
@@ -131,8 +136,7 @@ void ring_vm_socket_getsockopt(void *pPointer) {
     int level, optname, valsize, buffer = 0;
 
 #ifdef win
-    WSADATA data;
-	if (WSAStartup(MAKEWORD(2, 2), &data) != 0) {
+	if (!g_bWinsockInitialized) {
 		RING_API_ERROR("WSAStartup failed");
 		return;
 	}
@@ -146,9 +150,6 @@ void ring_vm_socket_getsockopt(void *pPointer) {
     if(getsockopt(sock->sockfd,level,optname,(char *)&buffer,&valsize)) 
     {
         RING_API_ERROR("Get Socket option Failed");
-        #ifdef win
-            WSACleanup();
-        #endif
         return;
     }
 
@@ -180,7 +181,6 @@ void ring_vm_socket_bind(void *pPointer) {
     if(bind(sock->sockfd ,sock->addr->ai_addr,(int) sock->addr->ai_addrlen) == SOCKET_ERROR) {
         RING_API_ERROR("Bind Error");
         freeaddrinfo(sock->addr);
-        WSACleanup();
         return;
     }
 
@@ -230,7 +230,6 @@ void ring_vm_socket_listen(void *pPointer) {
 #ifdef win
     if(listen(sock->sockfd,n) == SOCKET_ERROR) {
         RING_API_ERROR("Listen Failed");
-        WSACleanup();
         return;
     }
 
@@ -256,12 +255,12 @@ void ring_vm_socket_accept(void *pPointer) {
     }
 
     RING_SOCKET *sock = (RING_SOCKET *) RING_API_GETCPOINTER(1,RING_VM_POINTER_SOCKET);
-    RING_SOCKET *newsockfd = (RING_SOCKET *) ring_state_malloc(((VM *) pPointer)->pRingState, sizeof(RING_SOCKET));
+    RING_SOCKET *newsockfd = (RING_SOCKET *) RING_API_MALLOC(sizeof(RING_SOCKET));
     
 #ifdef win
     if((newsockfd->sockfd = accept(sock->sockfd,(struct sockaddr *) sock->addr,NULL)) == SOCKET_ERROR) {
         RING_API_ERROR("Accept Failed");
-        WSACleanup();
+		RING_API_FREE(newsockfd);
         return;
     }
 
@@ -381,7 +380,6 @@ void ring_vm_socket_connect(void *pPointer) {
     char sPort[10];
     if(getaddrinfo(host,itoa(port,sPort,10),&sock->hints,&sock->addr) != 0) {
         RING_API_ERROR("Invalid address");
-        WSACleanup();
         return;
     }
 
@@ -423,7 +421,6 @@ void ring_vm_socket_close(void *pPointer) {
 
 #ifdef win
     closesocket(sock->sockfd);
-    WSACleanup();
 #else
     close(sock->sockfd);
 #endif
@@ -446,8 +443,7 @@ void ring_vm_socket_gethostbyname(void *pPointer) {
     const char *ringval;
 
 #ifdef win
-    WSADATA data;
-    if(WSAStartup(MAKEWORD(2,2),&data) != 0) {
+    if(!g_bWinsockInitialized) {
         RING_API_ERROR("WSAStartup failed");
         return;
     }
@@ -482,8 +478,7 @@ void ring_vm_socket_gethostbyaddr(void *pPointer) {
     struct in_addr addr;
 
 #ifdef win
-    WSADATA data;
-    if(WSAStartup(MAKEWORD(2,2),&data) != 0) {
+    if(!g_bWinsockInitialized) {
         RING_API_ERROR("WSAStartup failed");
         return;
     }
@@ -535,9 +530,7 @@ void ring_vm_socket_gethostname(void *pPointer) {
     char *hostname = (char *) malloc(len);
 
 #ifdef win
-
-    WSADATA d;
-    if(WSAStartup(MAKEWORD(2,2),&d) != 0) {
+    if(!g_bWinsockInitialized) {
         RING_API_ERROR("WSAStartup Failed");
         return;
     }
@@ -579,9 +572,7 @@ void ring_vm_socket_getservbyname(void *pPointer) {
     }
 
 #ifdef win
-
-    WSADATA d;
-    if(WSAStartup(MAKEWORD(2,2),&d) != 0) {
+    if(!g_bWinsockInitialized) {
         RING_API_ERROR("WSAStartup Failed");
         return;
     }
@@ -623,9 +614,7 @@ void ring_vm_socket_getservbyport(void *pPointer) {
     }
 
 #ifdef win
-
-    WSADATA d;
-    if(WSAStartup(MAKEWORD(2,2),&d) != 0) {
+    if(!g_bWinsockInitialized) {
         RING_API_ERROR("WSAStartup Failed");
         return;
     }
@@ -717,8 +706,7 @@ void ring_vm_socket_inet_addr(void *pPointer) {
     unsigned long address;
 
 #ifdef win
-    WSADATA d;
-    if(WSAStartup(MAKEWORD(2,2),&d) != 0) {
+    if(!g_bWinsockInitialized) {
         RING_API_ERROR("WSAStartup Failed");
         return;
     }
@@ -729,9 +717,6 @@ void ring_vm_socket_inet_addr(void *pPointer) {
         address = inet_addr(ip);
         if(address == INADDR_NONE) {
             RING_API_ERROR("IP Address is not valid");
-            #ifdef win
-            WSACleanup();
-            #endif
             return;
         }
 
@@ -754,8 +739,7 @@ void ring_vm_socket_inet_ntoa(void *pPointer) {
     const char *address = RING_API_GETSTRING(1);
 
 #ifdef win
-    WSADATA d;
-    if(WSAStartup(MAKEWORD(2,2),&d) != 0) {
+    if(!g_bWinsockInitialized) {
         RING_API_ERROR("WSAStartup failed");
         return;
     }
@@ -766,29 +750,100 @@ void ring_vm_socket_inet_ntoa(void *pPointer) {
 
 
 RING_API void ringlib_init(RingState *pRingState) {
-    ring_vm_funcregister("socket",ring_vm_socket_init);
-    ring_vm_funcregister("setsockopt",ring_vm_socket_setsockopt);
-    ring_vm_funcregister("getsockopt",ring_vm_socket_getsockopt);
-    ring_vm_funcregister("bind",ring_vm_socket_bind);
-    ring_vm_funcregister("listen",ring_vm_socket_listen);
-    ring_vm_funcregister("accept",ring_vm_socket_accept);
-    ring_vm_funcregister("send",ring_vm_socket_send);
-    ring_vm_funcregister("sendto",ring_vm_socket_sendto);
-    ring_vm_funcregister("recv",ring_vm_socket_recv);
-    ring_vm_funcregister("recvfrom",ring_vm_socket_recvfrom);
-    ring_vm_funcregister("connect",ring_vm_socket_connect);
-    ring_vm_funcregister("close",ring_vm_socket_close);
-    ring_vm_funcregister("gethostbyname",ring_vm_socket_gethostbyname);
-    ring_vm_funcregister("gethostbyaddr",ring_vm_socket_gethostbyaddr);
-    ring_vm_funcregister("gethostname",ring_vm_socket_gethostname);
-    ring_vm_funcregister("getservbyname",ring_vm_socket_getservbyname);
-    ring_vm_funcregister("getservbyport",ring_vm_socket_getservbyport);
-    ring_vm_funcregister("ntohs",ring_vm_socket_ntohs);
-    ring_vm_funcregister("ntohl",ring_vm_socket_ntohl);
-    ring_vm_funcregister("htonl",ring_vm_socket_htonl);
-    ring_vm_funcregister("htons",ring_vm_socket_htons);
-    ring_vm_funcregister("inet_addr",ring_vm_socket_inet_addr);
-    ring_vm_funcregister("inet_ntoa",ring_vm_socket_inet_ntoa); 
+    RING_API_REGISTER("socket",ring_vm_socket_init);
+    RING_API_REGISTER("setsockopt",ring_vm_socket_setsockopt);
+    RING_API_REGISTER("getsockopt",ring_vm_socket_getsockopt);
+    RING_API_REGISTER("bind",ring_vm_socket_bind);
+    RING_API_REGISTER("listen",ring_vm_socket_listen);
+    RING_API_REGISTER("accept",ring_vm_socket_accept);
+    RING_API_REGISTER("send",ring_vm_socket_send);
+    RING_API_REGISTER("sendto",ring_vm_socket_sendto);
+    RING_API_REGISTER("recv",ring_vm_socket_recv);
+    RING_API_REGISTER("recvfrom",ring_vm_socket_recvfrom);
+    RING_API_REGISTER("connect",ring_vm_socket_connect);
+    RING_API_REGISTER("close",ring_vm_socket_close);
+    RING_API_REGISTER("gethostbyname",ring_vm_socket_gethostbyname);
+    RING_API_REGISTER("gethostbyaddr",ring_vm_socket_gethostbyaddr);
+    RING_API_REGISTER("gethostname",ring_vm_socket_gethostname);
+    RING_API_REGISTER("getservbyname",ring_vm_socket_getservbyname);
+    RING_API_REGISTER("getservbyport",ring_vm_socket_getservbyport);
+    RING_API_REGISTER("ntohs",ring_vm_socket_ntohs);
+    RING_API_REGISTER("ntohl",ring_vm_socket_ntohl);
+    RING_API_REGISTER("htonl",ring_vm_socket_htonl);
+    RING_API_REGISTER("htons",ring_vm_socket_htons);
+    RING_API_REGISTER("inet_addr",ring_vm_socket_inet_addr);
+    RING_API_REGISTER("inet_ntoa",ring_vm_socket_inet_ntoa); 
+
+
+    /* Constants */
+
+    RING_API_REGISTER("get_pf_unspec",ring_vm_socket_constant_pf_unspec);
+    RING_API_REGISTER("get_pf_unix",ring_vm_socket_constant_pf_unix);
+    RING_API_REGISTER("get_pf_inet",ring_vm_socket_constant_pf_inet);
+    RING_API_REGISTER("get_pf_inet6",ring_vm_socket_constant_pf_inet6);
+
+    RING_API_REGISTER("get_af_unspec",ring_vm_socket_constant_af_unspec);
+    RING_API_REGISTER("get_af_unix",ring_vm_socket_constant_af_unix);
+    RING_API_REGISTER("get_af_inet",ring_vm_socket_constant_af_inet);
+    RING_API_REGISTER("get_af_inet6",ring_vm_socket_constant_af_inet6);
+
+    RING_API_REGISTER("get_sock_stream",ring_vm_socket_constant_sock_stream);
+    RING_API_REGISTER("get_sock_dgram",ring_vm_socket_constant_sock_dgram);
+    RING_API_REGISTER("get_sock_raw",ring_vm_socket_constant_sock_raw);
+    RING_API_REGISTER("get_sock_rdm",ring_vm_socket_constant_sock_rdm);
+    RING_API_REGISTER("get_sock_seqpacket",ring_vm_socket_constant_sock_seqpacket);
+
+    RING_API_REGISTER("get_ipproto_ip",ring_vm_socket_constant_ipproto_ip);
+    RING_API_REGISTER("get_ipproto_tcp",ring_vm_socket_constant_ipproto_tcp);
+    RING_API_REGISTER("get_ipproto_udp",ring_vm_socket_constant_ipproto_udp);
+    RING_API_REGISTER("get_sol_socket",ring_vm_socket_constant_sol_socket);
+
+    RING_API_REGISTER("get_so_debug",ring_vm_socket_constant_so_debug);
+    RING_API_REGISTER("get_ip_add_membership",ring_vm_socket_constant_ip_add_membership);
+    RING_API_REGISTER("get_ip_add_source_membership",ring_vm_socket_constant_ip_add_source_membership);
+    RING_API_REGISTER("get_ip_block_source",ring_vm_socket_constant_ip_block_source);
+    RING_API_REGISTER("get_ip_drop_membership",ring_vm_socket_constant_ip_drop_membership);
+    RING_API_REGISTER("get_ip_drop_source_membership",ring_vm_socket_constant_ip_drop_source_membership);
+    RING_API_REGISTER("get_ip_hdrincl",ring_vm_socket_constant_ip_hdrincl);
+    RING_API_REGISTER("get_ip_mtu",ring_vm_socket_constant_ip_mtu);
+    RING_API_REGISTER("get_ip_mtu_discover",ring_vm_socket_constant_ip_mtu_discover);
+    RING_API_REGISTER("get_ip_multicast_loop",ring_vm_socket_constant_ip_multicast_loop);
+    RING_API_REGISTER("get_ip_multicast_ttl",ring_vm_socket_constant_ip_multicast_ttl);
+    RING_API_REGISTER("get_ip_options",ring_vm_socket_constant_ip_options);
+    RING_API_REGISTER("get_ip_pktinfo",ring_vm_socket_constant_ip_pktinfo);
+    RING_API_REGISTER("get_ip_recvtos",ring_vm_socket_constant_ip_recvtos);
+    RING_API_REGISTER("get_ip_recvttl",ring_vm_socket_constant_ip_recvttl);
+    RING_API_REGISTER("get_ip_tos",ring_vm_socket_constant_ip_tos);
+    RING_API_REGISTER("get_ip_ttl",ring_vm_socket_constant_ip_ttl);
+    RING_API_REGISTER("get_ip_unblock_source",ring_vm_socket_constant_ip_unblock_source);
+    RING_API_REGISTER("get_ip_unicast_if",ring_vm_socket_constant_ip_unicast_if);
+    RING_API_REGISTER("get_so_acceptconn",ring_vm_socket_constant_so_acceptconn);
+    RING_API_REGISTER("get_so_broadcast",ring_vm_socket_constant_so_broadcast);
+    RING_API_REGISTER("get_so_dontroute",ring_vm_socket_constant_so_dontroute);
+    RING_API_REGISTER("get_so_error",ring_vm_socket_constant_so_error);
+    RING_API_REGISTER("get_so_keepalive",ring_vm_socket_constant_so_keepalive);
+    RING_API_REGISTER("get_so_linger",ring_vm_socket_constant_so_linger);
+    RING_API_REGISTER("get_so_oobinline",ring_vm_socket_constant_so_oobinline);
+    RING_API_REGISTER("get_so_rcvbuf",ring_vm_socket_constant_so_rcvbuf);
+    RING_API_REGISTER("get_so_reuseaddr",ring_vm_socket_constant_so_reuseaddr);
+    RING_API_REGISTER("get_so_sndbuf",ring_vm_socket_constant_so_sndbuf);
+    RING_API_REGISTER("get_so_type",ring_vm_socket_constant_so_type);
+    RING_API_REGISTER("get_so_rcvlowat",ring_vm_socket_constant_so_rcvlowat);
+    RING_API_REGISTER("get_so_sndlowat",ring_vm_socket_constant_so_sndlowat);
+    RING_API_REGISTER("get_so_rcvtimeo",ring_vm_socket_constant_so_rcvtimeo);
+	
+#ifdef _WIN32
+	{
+		/* initialize Winsock */
+		WSADATA data;
+		if (WSAStartup(MAKEWORD(2, 2), &data) == 0) {
+			g_bWinsockInitialized = TRUE;
+		}
+		else {
+			g_bWinsockInitialized = FALSE;
+		}
+	}
+#endif
 }
 
 

@@ -1,3 +1,2 @@
-OBJECT
-wow
-OBJECT
+name: Gal
+name: bert

@@ -38,10 +38,9 @@ Func GenHeader aClass
 
 	# Start of code string
 	cCode = `
-/* Copyright (c) 2013-2020 Mahmoud Fayed <msfclipper@yahoo.com> */
+/* Copyright (c) 2013-2022 Mahmoud Fayed <msfclipper@yahoo.com> */
 #ifndef <T_HEADER>
 #define <T_HEADER>
-#include <QApplication>
 #include "ringqt.h"
 #include <<T_REALCLASSNAMEHEADER>>
 extern "C" {
@@ -228,9 +227,13 @@ void <T_CLASSNAME>::geteventparameters(void)
 		cSetEvents += "
 void "+aClass[:name]+"::set"+aEvent[:event]+"Event(const char *cStr)
 {
-	if (strlen(cStr)<100)
-		strcpy(this->c"+aEvent[:event]+"Event,cStr);
-}" + nl
+	if ( strlen(cStr) < RINGQT_EVENT_SIZE )
+		strcpy(this->c"+aEvent[:event]+'Event,cStr);
+	else {
+		printf("\nEvent Code: %s\n",cStr);
+		ring_vm_error(this->pVM,RINGQT_EVENT_SIZE_ERROR);
+	}
+}' + nl
 
 		# Get Events
 		cGetEvents += "

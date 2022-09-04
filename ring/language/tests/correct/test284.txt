@@ -1,3 +1,6 @@
-
-Line 8 Object does not support operator overloading 
-In raise() in file general/test87.ring 
+10
+20
+30
+100
+200
+300

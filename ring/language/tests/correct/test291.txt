@@ -1,8 +1,3 @@
-len of trimed(j) is : 1
-trimed J is : "n"
-len of trimed(j2) is : 0
-trimed J2 is : ""
-len of trimed(j3) is : 5
-trimed J3 is : "Majdi"
-len of trimed(j4) is : 15
-trimed J4 is : "Majdi    Sobain"
+
+general/test82.ring Line (17) Error (C7) : Error in list items
+general/test82.ring errors count : 1 

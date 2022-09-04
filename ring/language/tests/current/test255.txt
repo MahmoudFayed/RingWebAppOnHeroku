@@ -1,5 +1,3 @@
-one
-two
-three
-four
-five
+name: mahmoud
+address: Egypt
+phone: 0

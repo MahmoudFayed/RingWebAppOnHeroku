@@ -1,1 +1,3 @@
-10
+new class
+new object
+end of test!

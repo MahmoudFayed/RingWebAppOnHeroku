@@ -1,2 +1,2 @@
-name: Gal
-name: Bert
+10
+20

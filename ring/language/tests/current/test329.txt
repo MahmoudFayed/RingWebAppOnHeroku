@@ -1,7 +1,12 @@
--6
--4
--6
--6
--7
--8
+one = test:get_one()
+okkkkkkkkkkkkk
+Func GetObjectPointerFromRingObject pObj
+     if isobject(pObj)
+	if isattribute(pObj,'pObject')
+		return pObj.pObject
+	else 
+		raise('Error, The parameter is not a GUI object!')
+	ok
+     ok	
+     return pObj		
 

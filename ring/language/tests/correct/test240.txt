@@ -1,3 +1,1 @@
-name: NULL
-address: NULL
-phone: NULL
+5.60

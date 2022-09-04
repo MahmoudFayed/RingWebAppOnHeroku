@@ -2,19 +2,20 @@
 
 # Ring Programming Language
 
-## Innovative and practical general-purpose multi-paradigm language
+## Simple and flexible programming language for applications development
 
 | |*Resources*|*Operating System*|*Status*|
 |---|---|---|---|             																															 
 |Download |[![Download](https://raw.githubusercontent.com/ring-lang/ring/master/marketing/graphics/binaryrelease.svg)](https://ring-lang.github.io/download.html)|**macOS (Compiler: gcc C)**      |[![Build Status](https://travis-ci.org/ring-lang/ring.png)](https://travis-ci.org/ring-lang/ring)|   
-|Help |[![Help](https://raw.githubusercontent.com/ring-lang/ring/master/marketing/graphics/documentation.svg)](https://ring-lang.github.io/doc1.13/index.html)|**Ubuntu Linux (Compiler: gcc C)** |[![Build Status](https://travis-ci.org/ring-lang/ring.png)](https://travis-ci.org/ring-lang/ring)|                  
+|Help |[![Help](https://raw.githubusercontent.com/ring-lang/ring/master/marketing/graphics/documentation.svg)](https://ring-lang.github.io/doc1.17/index.html)|**Ubuntu Linux (Compiler: gcc C)** |[![Build Status](https://travis-ci.org/ring-lang/ring.png)](https://travis-ci.org/ring-lang/ring)|                  
 |Try |[![Try](https://raw.githubusercontent.com/ring-lang/ring/master/marketing/graphics//interactive%20ring-use%20online-green.svg)](https://tio.run/#Ring)|**macOS (Compiler: clang C)**      |[![Build Status](https://travis-ci.org/ring-lang/ring.png)](https://travis-ci.org/ring-lang/ring)|   
 |Extra |[![Resources](https://raw.githubusercontent.com/ring-lang/ring/master/marketing/graphics/resources-orange.svg)](https://ring-lang.github.io/resources.html)|**Ubuntu Linux (Compiler: clang C)** |[![Build Status](https://travis-ci.org/ring-lang/ring.png)](https://travis-ci.org/ring-lang/ring)|                  
 
 # Contents:
 
 - [Welcome to Ring](#welcome-to-ring)
-- [Innovative](#innovative)
+- [Get Excited!](#get-excited)
+- [Batteries Included!](#batteries-included)
 - [Practical](#practical)
   * [Custom Styles And Modern Programming Paradigms](#custom-styles-and-modern-programming-paradigms)
   * [GUI Applications Development And RAD Tools](#gui-applications-development-and-rad-tools)
@@ -40,7 +41,7 @@
   * [No Global Interpreter (VM) Lock - No GIL](#no-global-interpreter-vm-lock---no-gil)
   * [Fast Enough For Many Applications](#fast-enough-for-many-applications)
 - [Features](#features)
-  * [Innovative](#innovative-1)
+  * [Syntax](#syntax)
   * [Powerful Implementation](#powerful-implementation)
   * [Simple](#simple-1)
   * [Dynamic](#dynamic)
@@ -55,18 +56,20 @@
 
 # Welcome to Ring
 
-Ring is an innovative and practical general-purpose multi-paradigm language.
+Ring is a practical general-purpose multi-paradigm language.
 The supported programming paradigms are Imperative, Procedural, Object-Oriented, Functional,
 Metaprogramming, Declarative programming using nested structures, and Natural programming.
-The language is portable (Windows, Linux, macOS, Android, WebAssembly, etc.) and can be used to create
+
+The language is portable (MS-DOS, Windows, Linux, macOS, Android, WebAssembly, etc.) and can be used to create
 Console, GUI, Web, Games, and Mobile applications. 
-The language is designed to be Simple, Small, Flexible, and Fast. 
 
-# Innovative
+The language is designed to be Simple, Small, and Flexible. 
 
-The language comes with better support for Natural Language Programming and Declarative Programming. 
+# Get Excited
 
-The innovation comes in supporting these paradigms with new practical techniques on top of Object-Oriented Programming and Functional Programming. No need to know anything about (Compilers and Parsing). 
+Ring comes with better support for Natural Language Programming and Declarative Programming. 
+
+The language support these paradigms with new practical techniques on top of Object-Oriented Programming and Functional Programming. No need to know anything about (Compilers and Parsing). 
 
 You get the language constructs ready for use to create domain-specific languages in a fraction of time. 
 
@@ -79,6 +82,14 @@ You get the language constructs ready for use to create domain-specific language
 * [Natural Language Programming](https://www.codeproject.com/Articles/1138605/Natural-Language-Programming-in-the-Ring-Programmi)
 
 * [Natural Language Programming Library](https://www.codeproject.com/Articles/1200766/Using-the-Natural-Language-Programming-Library-NLP)
+
+* [Programming Without Coding Technology](https://store.steampowered.com/app/1953110/Programming_Without_Coding_Technology/)
+
+# Batteries Included
+
+Ring comes with many high quality bindings for popular libraries 
+
+![ScreenShot](https://raw.githubusercontent.com/ring-lang/ring/master/marketing/website/libs.png)
 
 # Practical
 
@@ -109,7 +120,7 @@ Also, using the same source code we can distribute our applications for Desktop,
 
 We believe in Games as a nice way to encourage people to learn to program.
 Ring comes with many game programming libraries in the standard library.
-Ring provides native support for Allegro, LibSDL, RayLib, OpenGL, and Qt3D libraries.
+Ring provides native support for Allegro, LibSDL, RayLib, OpenGL, FreeGLUT, Tilengine and Qt3D libraries.
 Also, Ring comes with a simple game engine for 2D game development using Declarative Programming.
 
 ![ScreenShot](https://raw.githubusercontent.com/ring-lang/ring/master/marketing/website/ringdemo13.png)
@@ -167,7 +178,7 @@ We recorded the development time (21 hours of development includes explaining ea
 
 The language is simple, trying to be natural, encourage organization, and comes with transparent and visual implementation. 
 It comes with compact syntax and a group of features that enable the programmer to create natural interfaces and declarative domain-specific languages in a fraction of time. 
-It is very small, fast, and comes with a smart garbage collector that puts the memory under the programmer's control. 
+It is very small, flexible, and comes with a smart garbage collector that puts the memory under the programmer's control. 
 It supports many programming paradigms, comes with useful and practical libraries. 
 The language is designed for productivity and developing high-quality solutions that can scale.
 
@@ -178,7 +189,7 @@ The language is designed for productivity and developing high-quality solutions 
 
 * Productivity and developing high-quality solutions that can scale.
 
-* Small and fast language that can be embedded in C/C++ projects.
+* Small and flexible language that can be embedded in C/C++ projects.
 
 * Simple language that can be used in education and introducing Compiler/VM concepts.
 
@@ -332,7 +343,7 @@ Ring contains only 4 types that represent the program data
 These types are (String, Number, List & Object)
 
 The idea is to have many use cases for each type which increase the flexibility and the ability
-to write functions that are more usable in different situtations.
+to write functions that are more usable in different situations.
 
 The String type is used to represent:
 * One character
@@ -575,7 +586,7 @@ The first instruction is : I want window
 
 The second instruction is : Window title = Expression
 
-Also, keywords that can be ignored like the ‘the’ keyword
+Also, keywords that can be ignored like the **the** keyword
 
 ```ring
 new App
@@ -790,7 +801,7 @@ If we have a reference to a variable (when we pass objects and lists to function
 
 ## No Global Interpreter (VM) Lock - No GIL
 
-When we use threads in Ring applications, We don’t have a global interpreter (VM) lock (No GIL)
+When we use threads in Ring applications, We don't have a global interpreter (VM) lock (No GIL)
 
 So threads can work in parallel and execute Ring instructions at the same time
 
@@ -829,7 +840,7 @@ Also when we need more speed we can use C/C++ extensions!
 # Features
 
 
-## Innovative
+## Syntax
 
 * Compact Syntax
 
@@ -871,7 +882,7 @@ Also when we need more speed we can use C/C++ extensions!
 
 * No Global Interpreter Lock (No GIL)
 
-* Portable (Windows, Linux, macOS, Android, WebAssembly, etc.)
+* Portable (MS-DOS, Windows, Linux, macOS, Android, WebAssembly, etc.)
 
 ## Simple
 
@@ -1009,7 +1020,11 @@ Also when we need more speed we can use C/C++ extensions!
 
 * Create 3D Games (OpenGL, FreeGLUT, RayLib, Qt3D, etc.)
 
+* Tilengine Extension (2D retro graphics engine with raster effects)
+
 * Create GUI Applications for Desktop, WebAssembly, and Mobile platforms (Using the Qt Framework)
+
+* Libui Extension (lightweight GUI Applications)
 
 ## More 
 

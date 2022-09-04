@@ -1,2 +1,3 @@
 name: NULL
-name: NULL
+address: NULL
+phone: NULL

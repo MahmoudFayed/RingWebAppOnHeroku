@@ -1,5 +1,3 @@
+x: 10.12
+y: 20.12
 
-Can't open file natural/filenameinpara2.ring 
-
-general/test125.ring Line (1) Error (C27) : Syntax Error!
-general/test125.ring errors count : 1 
