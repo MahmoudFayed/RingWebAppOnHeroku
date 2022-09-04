@@ -23,7 +23,15 @@ Func LoadVars
 	    	if sysget("REQUEST_METHOD") = "GET"
 			cInput = sysget("QUERY_STRING")
 		else
-			cInput = input(sysget("CONTENT_LENGTH"))
+			if sysget("CONTENT_LENGTH") > 0
+				cInput = input(sysget("CONTENT_LENGTH"))
+				if sysget("QUERY_STRING") != ""
+					cInput += "&" + sysget("QUERY_STRING")
+
+				ok
+			else
+				cInput = ""
+			ok
 		ok
 		
 		aPageVars = decode(cInput)
@@ -69,7 +77,7 @@ func HTML2PDF filepath,filefolder,cStr
 	cHTML = cFileName + ".html"
 	cPDF =  cFileName + ".pdf"
 	write(cHTML,cStr)
-	system("/app/tools/wkhtmltopdf " + cHTML + " " + cPDF)
+	system("wkhtmltopdf " + cHTML + " " + cPDF)
 	New Page 
 	{  
 		text(cPDF)

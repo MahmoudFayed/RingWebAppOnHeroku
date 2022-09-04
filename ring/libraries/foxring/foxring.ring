@@ -169,7 +169,7 @@ class frFunctions {
 
 
 		// Jar 02.10.2018 
-		// At moment tnFDow isn´t used
+		// At moment tnFDow isn't used
 		tnFDoW = this.frSetIfEmpty(tnFDoW, 2)		
 
 		oDt = this._GetDateObject(tdDate.nYear, tdDate.nMonth, tdDate.nDay)
@@ -196,7 +196,7 @@ class frFunctions {
 	func frCDoW(tdDate, tnFDoW) {
 
 		// Jar 02.10.2018 
-		// At moment tnFDow isn´t used
+		// At moment tnFDow isn't used
 		tnFDoW = this.frSetIfEmpty(tnFDoW, 2)		
 
 		oDt = this._GetDateObject(tdDate.nYear, tdDate.nMonth, tdDate.nDay)
@@ -222,7 +222,7 @@ class frFunctions {
 	func frCDoWShort(tdDate, tnFDoW) {
 
 		// Jar 02.10.2018 
-		// At moment tnFDow isn´t used
+		// At moment tnFDow isn't used
 		tnFDoW = this.frSetIfEmpty(tnFDoW, 2)		
 		oDt = this._GetDateObject(tdDate.nYear, tdDate.nMonth, tdDate.nDay)
 		return oDt.cShortDayOfWeek
@@ -710,7 +710,7 @@ class frFunctions {
 	func frFile(tcFileName, tnFlag) {
 
 		// Jar 18.02.2018 
-		// At moment tnFlag isn´t used
+		// At moment tnFlag isn't used
 
 		return Fexists(tcFileName)	
 	}
@@ -1411,7 +1411,7 @@ class frFunctions {
 	 *			: Specifies the higher value in the range.
 	 *			:
 	 * Returns		: <luReturnValue>
-	 *			: Returns a logical oder null value. 
+	 *			: Returns a logical order null value. 
 	 *			: 
 	 * Author	 	: Jar C 29.01.2018
 	 */
@@ -1438,7 +1438,7 @@ class frFunctions {
 	
 	/*
 	 * Syntax		: lcReturnValue = frSetCentury(tcStatus)
-	 * Description		: Returns the current value of the century format and sets a new one when especified.
+	 * Description		: Returns the current value of the century format and sets a new one when specified.
 	 * 			:
 	 * Arguments		: <tcStatus>
 	 *			: Specifies the century status. 
@@ -1467,7 +1467,7 @@ class frFunctions {
 
 	/*
 	 * Syntax		: lcReturnValue = frSetDate(tcDateFormat)
-	 * Description		: Returns the current value of the date format and sets a new one when especified
+	 * Description		: Returns the current value of the date format and sets a new one when specified.
 	 * 			:
 	 * Arguments		: <tcDateFormat>
 	 *			: Specifies the date format 
@@ -1521,7 +1521,7 @@ class frFunctions {
 	 * Arguments   		: <tuExpression>
 	 *			: Specifies the character for the numeric place separator. 
 	 *			:
-	 *			: Use frSetSeparatorTo() to change the numeric place separator from de default, for example space " " or a comma ",".
+	 *			: Use frSetSeparatorTo() to change the numeric place separator from default, for example space " " or a comma ",".
 	 *			: Issue frSetSeparatorTo(Null) to reset the value to its default.
 	 *			:
 	 * Returns		: None
@@ -1701,9 +1701,9 @@ class frFunctions {
 	 * Description		: Returns the data type of an expression.
 	 *			:
 	 * Arguments   		: <tuExpression>
-	 *			: Expecifies the expression for which the data type is returned. frVartype() returns a
+	 *			: Specifies the expression for which the data type is returned. frVartype() returns a
 	 *			: single character indicating the data type of the expression. 
-	 *			: The following table lists the characteres that frVarType() returns for each data type.
+	 *			: The following table lists the characters that frVarType() returns for each data type.
 	 *			:
 	 *			: -------------------	---------------------------------------------------------------
 	 *			: Return Value		Data Type
@@ -1736,7 +1736,7 @@ class frFunctions {
 				else
 					if lcExpressionType = this._ring_object_type {
 					
-						// if it´s a object we need to check if it's date or datetime object
+						// if it's a object we need to check if it's date or datetime object
 						if this._IsPorperty(tuExpression, "cClassType") {
 							lcRet = tuExpression.cClassType
 						else
@@ -2159,7 +2159,7 @@ class DateClass {
 
 	/*
 	 * Return day of the week Monday ...... Sunday 
-	 * Case tlType <> True return the abreviation
+	 * Case tlType <> True return the abbreviation
 	 */
 	func cDayOfWeek(tlType) {
 	
@@ -2239,7 +2239,7 @@ class DateClass {
 		return lnRet
 	}
 	
-	// Return the number of days in year preceeding first day of month
+	// Return the number of days in year preceding first day of month
 	func _DaysBeforeMonth(tnYear, tnMonth) {
 	
 		lnToAdd = 0

@@ -192,7 +192,7 @@ Func std_fseek filehandle,noffset,nwhence
 	return fseek(filehandle,noffset,nwhence)
 
 Func std_ftell filehandle
-	return fteel(filehandle)
+	return ftell(filehandle)
 
 Func std_rewind filehandle
 	return rewind(filehandle)
@@ -469,9 +469,18 @@ Func std_sha224 cString
 
 Func std_encrypt cString,cKey,cIV
 	return encrypt(cString,cKey,cIV)
+	
+Func std_encrypt_ex cString,cKey,cIV,cCipher
+	return encrypt(cString,cKey,cIV,cCipher)
 
 Func std_decrypt cString,cKey,cIV
 	return decrypt(cString,cKey,cIV)
+	
+Func std_decrypt_ex cString,cKey,cIV,cCipher
+	return decrypt(cString,cKey,cIV,cCipher)
+
+Func std_supportedciphers
+	return supportedciphers()
 
 Func std_randbytes nSize
 	return randbytes(nSize)
