@@ -32,7 +32,7 @@ Note (You have to select a unique name for your application)
 
 (5) Clone this projet using Git (Don't forget the dot in the end to clone in the current directory)
 
-	git clone https://github.com/ring-lang/RingWebAppOnHeroku .
+	git clone https://github.com/ringpackages/RingWebAppOnHeroku .
 
 (6) Login to Heroku (Enter your Email and Password)
 
@@ -46,8 +46,8 @@ change testring to your application name
 
 (8) Set the buildpacks (So Heroku can know how to support your project)
 
-	heroku buildpacks:add --index 1 https://github.com/ring-lang/heroku-buildpack-apt
-	heroku buildpacks:add --index 2 https://github.com/ring-lang/heroku-buildpack-ring
+	heroku buildpacks:add --index 1 https://github.com/ringpackages/heroku-buildpack-apt
+	heroku buildpacks:add --index 2 https://github.com/ringpackages/heroku-buildpack-ring
 
 (9) Now build your project and deploy it 
 
