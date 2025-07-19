@@ -74,8 +74,6 @@ Then commit and deploy!
 
 file : ringapp/helloworld.ring 
 
-To run it : http://testring.herokuapp.com/ringapp/helloworld.ring 
-
 	#!/app/runring.sh -cgi
 
 	see "content-type: text/html" +nl+nl	
@@ -83,8 +81,6 @@ To run it : http://testring.herokuapp.com/ringapp/helloworld.ring
 
 
 file : ringapp/helloworld2.ring 
-
-To run it : http://testring.herokuapp.com/ringapp/helloworld2.ring 
 
 	#!/app/runring.sh -cgi
 	load "weblib.ring"
