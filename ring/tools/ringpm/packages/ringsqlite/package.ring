@@ -5,11 +5,11 @@ aPackageInfo = [
 	:developer = "Mahmoud Fayed",
 	:email = "msfclipper@yahoo.com",
 	:license = "MIT License",
-	:version = "1.0.3",
-	:ringversion = "1.13",
+	:version = "1.0.8",
+	:ringversion = "1.21",
 	:versions = 	[
 		[
-			:version = "1.0.3",
+			:version = "1.0.8",
 			:branch = "master"
 		]
 	],
@@ -29,6 +29,7 @@ aPackageInfo = [
 		"extensions/ringsqlite/buildclang.sh",
 		"extensions/ringsqlite/buildgcc.sh",
 		"extensions/ringsqlite/buildvc.bat",
+		"extensions/ringsqlite/buildvc_x64.bat",
 		"extensions/ringsqlite/ring_vmsqlite.c",
 		"extensions/ringsqlite/ring_vmsqlite.h",
 		"extensions/ringsqlite/sqlite3.c",

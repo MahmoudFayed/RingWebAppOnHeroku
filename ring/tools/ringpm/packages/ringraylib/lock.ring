@@ -2,7 +2,7 @@ aLockInfo = [
 	[
 		:name = "ringraylib",
 		:branch = "master",
-		:version = "1.0.40",
+		:version = "1.0.46",
 		:providerusername = "ringpackages",
 		:providerwebsite = ""
 	]

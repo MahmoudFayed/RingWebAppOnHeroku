@@ -46,14 +46,12 @@
 <loadfile> widgets/qaction.cf
 <loadfile> widgets/qmessagebox.cf
 <loadfile> widgets/qfiledialog.cf
-<loadfile> widgets/qdirmodel.cf
 <loadfile> widgets/qfontdialog.cf
 <loadfile> widgets/qdialog.cf
 <loadfile> widgets/qcolordialog.cf
 <loadfile> widgets/qlcdnumber.cf
 <loadfile> widgets/qinputdialog.cf
 <loadfile> widgets/qallevents.cf
-<loadfile> widgets/qdesktopwidget.cf
 <loadfile> widgets/qlistwidgetitem.cf
 <loadfile> widgets/qsystemtrayicon.cf
 <loadfile> widgets/ringcodehighlighter.cf
@@ -79,10 +77,12 @@
 <loadfile> widgets/qcalenderwidget.cf
 <loadfile> widgets/qtabbar.cf
 <loadfile> widgets/qscrollbar.cf
-<loadfile> widgets/qgraphicsview.cf
-<loadfile> widgets/qgraphicsscene.cf
 <loadfile> widgets/qstyle.cf
 
-<filter> ((iswindows()) and sysget("RINGQT_ANDROID") = "")
+<comment>
+<loadfile> widgets/qdesktopwidget.cf
+</comment>
+
+<filter> ((iswindows()) and sysget("RINGQT_ANDROID") = "" and sysget("RINGQT_NOOPENGL") = "")
 <loadfile> widgets/qopenglwidget.cf
 </filter>

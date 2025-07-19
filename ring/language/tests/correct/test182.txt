@@ -1,3 +1,0 @@
-Instruction : I want window
-Using : and
-Instruction : Window Title = hello world

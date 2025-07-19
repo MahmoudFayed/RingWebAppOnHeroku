@@ -14,9 +14,13 @@ The Android folder contains Ring extensions for the Android platform
 
 The WebAssembly folder contains Ring extensions for the WebAssembly platform
 
+The Microcontroller folder contains Ring extensions for the Microcontroller devices
+
 The RingBeep folder contains a simple example to learn how to create an extension using the Code Generator
 
 The RingMouseEvent folder Another simple example to learn how to create an extension
+
+The RingWinLib folder contains simple extension that provide the RightToLeft() function
 
 The RingInternet folder contains functions that uses the LibCurl library  
 
@@ -72,3 +76,11 @@ The RingThreads folder contains the Ring binding to TinyCThread
 The RingCJSON folder contains the Ring binding to CJSON library
 
 The RingHTTPLib folder contains the Ring binding to CPPHTTPLib library
+
+The RingRogueUtil folder contains the Ring binding to RogueUtil library
+
+The RingFastPro folder contains functions for bytes/list processing
+
+The RingNAPPGUI folder contains the Ring binding to NAPPGUI (Cross-Platform C SDK)
+
+The RingPDFGen folder contains the Ring binding to PDFGen library

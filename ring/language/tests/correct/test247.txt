@@ -1,5 +1,0 @@
-start
-Hello
-end
-start
-end

@@ -1,8 +1,5 @@
 set RINGQT_WEBASSEMBLY=1
 set RINGQT_ANDROID=1
-set RINGQT_ANDROID_QT512=
-set RINGQT_QT512=1
-set RINGQT_QT515=1
 set RINGQT_NOSQL=1
 set RINGQT_NOPOSITIONING=1
 set RINGQT_NOWEBKITWIDGETS=1
@@ -22,18 +19,15 @@ set RINGQT_NOMULTIMEDIA=1
 set RINGQT_NOMULTIMEDIAWIDGETS=1
 
 
-ring ..\codegen\parsec.ring classes\qt.cf cpp\src\ring_qt.cpp ..\..\libraries\guilib\classes\ring_qt.ring
+..\..\bin\ring ..\codegen\parsec.ring classes\qt.cf cpp\src\ring_qt.cpp ..\..\libraries\guilib\classes\ring_qt.ring
 cd events
-ring qtevents.ring
+..\..\..\bin\ring qtevents.ring
 cd ..
 copy cpp\src\*.cpp ..\..\webassembly\ringqt\project
 copy cpp\include\*.h ..\..\webassembly\ringqt\project
 
 set RINGQT_WEBASSEMBLY=
 set RINGQT_ANDROID=
-set RINGQT_ANDROID_QT512=
-set RINGQT_QT512=
-set RINGQT_QT515=
 set RINGQT_NOSQL=
 set RINGQT_NOPOSITIONING=
 set RINGQT_NOWEBKITWIDGETS=

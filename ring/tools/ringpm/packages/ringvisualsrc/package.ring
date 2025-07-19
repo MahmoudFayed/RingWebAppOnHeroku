@@ -5,18 +5,18 @@ aPackageInfo = [
 	:developer = "Mahmoud Fayed",
 	:email = "msfclipper@yahoo.com",
 	:license = "MIT License",
-	:version = "1.14.0",
-	:ringversion = "1.14",
+	:version = "1.23",
+	:ringversion = "1.23",
 	:versions = 	[
 		[
-			:version = "1.14.0",
+			:version = "1.23",
 			:branch = "master"
 		]
 	],
 	:libs = 	[
 		[
 			:name = "ringsrc",
-			:version = "1.14.0",
+			:version = "1.23",
 			:providerusername = "ringpackages"
 		]
 	],
@@ -57,6 +57,10 @@ aPackageInfo = [
 		"language/visualsrc/ring_generallib_extension.config",
 		"language/visualsrc/ring_generallib_extension.fpt",
 		"language/visualsrc/ring_generallib_extension.ssf",
+		"language/visualsrc/ring_hashlib.c.isense",
+		"language/visualsrc/ring_hashlib.config",
+		"language/visualsrc/ring_hashlib.fpt",
+		"language/visualsrc/ring_hashlib.ssf",
 		"language/visualsrc/ring_hashtable.c.isense",
 		"language/visualsrc/ring_hashtable.config",
 		"language/visualsrc/ring_hashtable.FPT",
@@ -100,7 +104,6 @@ aPackageInfo = [
 		"language/visualsrc/ring_scanner.c.isense",
 		"language/visualsrc/ring_scanner.config",
 		"language/visualsrc/ring_scanner.fpt",
-		"language/visualsrc/ring_scanner.PRG.isense",
 		"language/visualsrc/ring_scanner.ssf",
 		"language/visualsrc/ring_state.c.isense",
 		"language/visualsrc/ring_state.config",
@@ -114,10 +117,6 @@ aPackageInfo = [
 		"language/visualsrc/ring_string.config",
 		"language/visualsrc/ring_string.fpt",
 		"language/visualsrc/ring_string.ssf",
-		"language/visualsrc/ring_test.c.isense",
-		"language/visualsrc/ring_test.config",
-		"language/visualsrc/ring_test.fpt",
-		"language/visualsrc/ring_test.ssf",
 		"language/visualsrc/ring_vm.c.isense",
 		"language/visualsrc/ring_vm.config",
 		"language/visualsrc/ring_vm.fpt",
@@ -126,10 +125,6 @@ aPackageInfo = [
 		"language/visualsrc/ring_vmapi.config",
 		"language/visualsrc/ring_vmapi.fpt",
 		"language/visualsrc/ring_vmapi.ssf",
-		"language/visualsrc/ring_vmcui.c.isense",
-		"language/visualsrc/ring_vmcui.config",
-		"language/visualsrc/ring_vmcui.fpt",
-		"language/visualsrc/ring_vmcui.ssf",
 		"language/visualsrc/ring_vmduprange.c.isense",
 		"language/visualsrc/ring_vmduprange.config",
 		"language/visualsrc/ring_vmduprange.fpt",
@@ -190,7 +185,25 @@ aPackageInfo = [
 		"language/visualsrc/ring_vmvars.config",
 		"language/visualsrc/ring_vmvars.fpt",
 		"language/visualsrc/ring_vmvars.ssf",
-		"language/visualsrc/rpwibuild.bat"
+		"language/visualsrc/ring_vmerror.c.isense",
+		"language/visualsrc/ring_vmerror.config",
+		"language/visualsrc/ring_vmerror.fpt",
+		"language/visualsrc/ring_vmerror.ssf",
+		"language/visualsrc/ring_vmeval.c.isense",
+		"language/visualsrc/ring_vmeval.config",
+		"language/visualsrc/ring_vmeval.fpt",
+		"language/visualsrc/ring_vmeval.ssf",
+		"language/visualsrc/ring_vminfo_extension.c.isense",
+		"language/visualsrc/ring_vminfo_extension.config",
+		"language/visualsrc/ring_vminfo_extension.fpt",
+		"language/visualsrc/ring_vminfo_extension.ssf",
+		"language/visualsrc/ring_vmthread.c.isense",
+		"language/visualsrc/ring_vmthread.config",
+		"language/visualsrc/ring_vmthread.fpt",
+		"language/visualsrc/ring_vmthread.ssf",
+		"language/visualsrc/config.txt",
+		"language/visualsrc/rpwibuild.bat",
+		"language/visualsrc/commentsnl.ring"
 	],
 	:windowsfiles = 	[
 

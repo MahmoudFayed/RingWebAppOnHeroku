@@ -1,2 +1,0 @@
-Using ? substr(cStr,"", "nice")
-Error in second parameter value!

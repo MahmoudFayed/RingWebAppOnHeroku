@@ -54,10 +54,26 @@ extern "C" {
 #include "gcolordialog.h"
 #include "gfontdialog.h"
 #include "gfiledialog.h"
+#include "gdatetimeedit.h"
 #include "mscompleter.h"
 #include <QtWidgets>
+
+#include <QGraphicsEffect>
+#include "ggraphicseffect.h"
+#include <QGraphicsObject>
+#include "ggraphicsobject.h"
+#include <QGraphicsTextItem>
+#include "ggraphicstextitem.h"
+#include <QGraphicsView>
+#include "ggraphicsview.h"
+#include <QGraphicsWidget>
+#include "ggraphicswidget.h"
+
 </filter>
 
+<filter> sysget("RINGQT_NOGRAPHICSSVG") = ""
+#include <QGraphicsSvgItem>
+</filter>
 
 <filter> sysget("RINGQT_NOMULTIMEDIA") = ""
 #include "gvideowidget.h"
@@ -70,6 +86,7 @@ extern "C" {
 #include <QVideoWidgetControl>
 #include <QCamera>
 #include <QCameraImageCapture>
+#include <QAudioOutput>
 </filter>
 
 <filter> sysget("RINGQT_NOBLUETOOTH") = ""
@@ -162,7 +179,7 @@ extern "C" {
 </filter>
 
 
-<filter> (iswindows() or ismacosx()) and sysget("RINGQT_NOQML") = ""
+<filter> sysget("RINGQT_NOQML") = ""
 #include "gquickwidget.h"
 #include <QQuickWidget>
 #include <QQmlError>
@@ -217,13 +234,13 @@ extern "C" {
 #include <QAxWidget>
 </filter>
 
-<filter> sysget("RINGQT_QT512") = "1" and sysget("RINGQT_NOSPEECH") = ""
+<filter> sysget("RINGQT_NOSPEECH") = ""
 #include "gtexttospeech.h"
 #include <QTextToSpeech>
 #include <QVoice>
 </filter>
 
-<filter> sysget("RINGQT_QT512") = "1" and sysget("RINGQT_NOQT3D") = ""
+<filter> sysget("RINGQT_NOQT3D") = ""
 #include "gobjectpicker.h"
 #include "gframeaction.h"
 #include <Qt3DCore/QAbstractAspect>
@@ -276,7 +293,7 @@ extern "C" {
 #include <QViewport>
 </filter>
 
-<filter> sysget("RINGQT_QT512") = "1" and sysget("RINGQT_NOCHARTS") = ""
+<filter> sysget("RINGQT_NOCHARTS") = ""
 #include "gabstractbarseries.h"
 #include "gabstractaxis.h"
 #include "gabstractseries.h"
@@ -310,5 +327,7 @@ extern "C" {
 #include "gxyseries.h"
 #include <QtCharts>
 </filter>
+
+
 
 </code>

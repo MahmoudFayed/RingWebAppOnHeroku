@@ -1,3 +1,0 @@
-Name      Mahmoud
-Country   Egypt
-Phone     123456

@@ -5,11 +5,11 @@ aPackageInfo = [
 	:developer = "YourName",
 	:email = "YourEmail",
 	:license = "MIT License",
-	:version = "1.0.3",
-	:ringversion = "1.13",
+	:version = "1.0.8",
+	:ringversion = "1.21",
 	:versions = 	[
 		[
-			:version = "1.0.3",
+			:version = "1.0.8",
 			:branch = "master"
 		]
 	],
@@ -29,6 +29,7 @@ aPackageInfo = [
 		"extensions/ringodbc/buildclang.sh",
 		"extensions/ringodbc/buildgcc.sh",
 		"extensions/ringodbc/buildvc.bat",
+		"extensions/ringodbc/buildvc_x64.bat",
 		"extensions/ringodbc/odbclib.ring",
 		"extensions/ringodbc/ring_vmodbc.c",
 		"extensions/ringodbc/ring_vmodbc.h",

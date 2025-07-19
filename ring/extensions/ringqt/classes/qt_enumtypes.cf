@@ -1,4 +1,11 @@
+<comment>
+Numbers & Enum Types
+</comment>
+
 <runcode>
+
+aNumberTypes + "qsizetype"
+
 aEnumTypes + "Qt::GestureType"
 aEnumTypes + "Qt::GestureFlag"
 aEnumTypes + "Qt::ShortcutContext"
@@ -446,4 +453,27 @@ aEnumTypes + "QStyle::StyleHint"
 aEnumTypes + "QStyle::SubControl"
 aEnumTypes + "QStyle::SubControls"
 aEnumTypes + "QStyle::SubElement"
+aEnumTypes + "QTextOption::Flag"
+aEnumTypes + "QTextOption::Flags"
+aEnumTypes + "QTextOption::TabType"
+aEnumTypes + "QTextOption::WrapMode"
+aEnumTypes + "QGraphicsItem::CacheMode"
+aEnumTypes + "QGraphicsItem::GraphicsItemChange"
+aEnumTypes + "QGraphicsItem::GraphicsItemFlag"
+aEnumTypes + "QGraphicsItem::GraphicsItemFlags"
+aEnumTypes + "QGraphicsItem::PanelModality"
+aEnumTypes + "QGraphicsItem::anonymous"
+aEnumTypes + "QGraphicsEllipseItem::anonymous"
+aEnumTypes + "QGraphicsPixmapItem::ShapeMode"
+aEnumTypes + "QGraphicsPixmapItem::anonymous"
+aEnumTypes + "QGraphicsSceneContextMenuEvent::Reason"
+aEnumTypes + "QGraphicsEffect::ChangeFlag"
+aEnumTypes + "QGraphicsEffect::ChangeFlags"
+aEnumTypes + "QGraphicsEffect::PixmapPadMode"
+aEnumTypes + "QGraphicsTextItem::anonymous"
+aEnumTypes + "QGraphicsWidget::anonymous"
+aEnumTypes + "QTransform::TransformationType"
+aEnumTypes + "QRegExp::CaretMode"
+aEnumTypes + "QRegExp::PatternSyntax"
+
 </runcode>

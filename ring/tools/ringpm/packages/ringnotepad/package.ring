@@ -5,11 +5,11 @@ aPackageInfo = [
 	:developer = "Mahmoud Fayed",
 	:email = "msfclipper@yahoo.com",
 	:license = "MIT License",
-	:version = "1.0.10",
-	:ringversion = "1.13",
+	:version = "1.0.27",
+	:ringversion = "1.21",
 	:versions = 	[
 		[
-			:version = "1.0.10",
+			:version = "1.0.27",
 			:branch = "master"
 		]
 	],
@@ -51,13 +51,11 @@ aPackageInfo = [
 		"tools/ringnotepad/batch/run2.bat",
 		"tools/ringnotepad/batch/run.sh",
 		"tools/ringnotepad/batch/run2.sh",
-		"tools/ringnotepad/apache_config/access.log",
-		"tools/ringnotepad/apache_config/error.log",
-		"tools/ringnotepad/apache_config/lastrundirpath.txt",
-		"tools/ringnotepad/apache_config/makeexecutable.sh",
-		"tools/ringnotepad/apache_config/ringwebapp.local.conf",
-		"tools/ringnotepad/apache_config/setwebappconf.sh",
-		"tools/ringnotepad/apache_config/webapp.conf.bak",
+		"tools/ringnotepad/batch/apache_config/makeexecutable.sh",
+		"tools/ringnotepad/batch/apache_config/setwebappconf.sh",
+		"tools/ringnotepad/batch/apache_config/webapp.conf.bak",
+		"tools/ringnotepad/image/closeapp.png",
+		"tools/ringnotepad/image/pause.png",
 		"tools/ringnotepad/image/back.jpg",
 		"tools/ringnotepad/image/back2.jpg",
 		"tools/ringnotepad/image/close.png",
@@ -86,6 +84,7 @@ aPackageInfo = [
 		"tools/ringnotepad/image/web.png",
 		"tools/ringnotepad/README.md",
 		"tools/ringnotepad/rnote.ring",
+		"tools/ringnotepad/rnote_arabic.ring",
 		"tools/ringnotepad/rnoteexe/buildvc.bat",
 		"tools/ringnotepad/rnoteexe/README.md",
 		"tools/ringnotepad/rnoteexe/ringicon.ico",
@@ -123,7 +122,10 @@ aPackageInfo = [
 		"tools/ringnotepad/src/rnotetreeviewevents.ring",
 		"tools/ringnotepad/src/rnoteviewmenu.ring",
 		"tools/ringnotepad/src/rnotewebbrowser.ring",
-		"tools/ringnotepad/src/templates.ring"
+		"tools/ringnotepad/src/templates.ring",
+		"tools/ringnotepad/src/rnoteselectfile.ring",
+		"tools/ringnotepad/translation/arabic.ring",
+		"tools/ringnotepad/translation/english.ring"
 	],
 	:windowsfiles = 	[
 

@@ -5,11 +5,11 @@ aPackageInfo = [
 	:developer = "Mahmoud Fayed",
 	:email = "msfclipper@yahoo.com",
 	:license = "MIT License",
-	:version = "1.0.9",
-	:ringversion = "1.13",
+	:version = "1.0.14",
+	:ringversion = "1.21",
 	:versions = 	[
 		[
-			:version = "1.0.9",
+			:version = "1.0.14",
 			:branch = "master"
 		]
 	],
@@ -29,6 +29,7 @@ aPackageInfo = [
 		"extensions/ringfreeglut/buildclang.sh",
 		"extensions/ringfreeglut/buildgcc.sh",
 		"extensions/ringfreeglut/buildvc.bat",
+		"extensions/ringfreeglut/buildvc_x64.bat",
 		"extensions/ringfreeglut/document.bat",
 		"extensions/ringfreeglut/freeglut.cf",
 		"extensions/ringfreeglut/freeglut.ring",

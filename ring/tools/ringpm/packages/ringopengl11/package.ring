@@ -5,11 +5,11 @@ aPackageInfo = [
 	:developer = "Mahmoud Fayed",
 	:email = "msfclipper@yahoo.com",
 	:license = "MIT License",
-	:version = "1.0.3",
-	:ringversion = "1.13",
+	:version = "1.0.8",
+	:ringversion = "1.21",
 	:versions = 	[
 		[
-			:version = "1.0.3",
+			:version = "1.0.8",
 			:branch = "master"
 		]
 	],
@@ -29,6 +29,7 @@ aPackageInfo = [
 		"extensions/ringopengl/opengl11/buildclang.sh",
 		"extensions/ringopengl/opengl11/buildgcc.sh",
 		"extensions/ringopengl/opengl11/buildvc.bat",
+		"extensions/ringopengl/opengl11/buildvc_x64.bat",
 		"extensions/ringopengl/opengl11/document.bat",
 		"extensions/ringopengl/opengl11/gencode.bat",
 		"extensions/ringopengl/opengl11/gencode.sh",

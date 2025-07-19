@@ -13,10 +13,11 @@ aAllPackagesInfo = [
 		"ringlibuv",
 		"ringopengl11",
 		"ringopengl21",
-		"ringopengl32",
 		"ringqt",
 		"ringlibsdl",
-		"guilib"
+		"guilib",
+		"ringopengl32",
+		"ringthreads"
 	],
 	:ringcurl = 	[
 		"internetlib",
@@ -25,7 +26,6 @@ aAllPackagesInfo = [
 	],
 	:ringzip = 	[
 		"ringqt",
-		"ringhelphtml",
 		"androidringlibsdl",
 		"androidringqt",
 		"visualstudioeditorextension",
@@ -38,13 +38,18 @@ aAllPackagesInfo = [
 		"qt515runtime",
 		"qt515qmlruntime",
 		"webassemblyringqt",
-		"libdepwin_allegro5271"
+		"RandomUser",
+		"libdepwin_allegro528",
+		"randomuser",
+		"ringhelphtml"
 	],
 	:ringopenssl = 	[
 		"stdlib"
 	],
 	:internetlib = 	[
-		"stdlib"
+		"stdlib",
+		"RandomUser",
+		"randomuser"
 	],
 	:ringodbc = 	[
 		"stdlib"
@@ -127,12 +132,18 @@ aAllPackagesInfo = [
 		"jsonlib",
 		"CitationsPrediction",
 		"mergetwofiles",
-		"poetryanalysis"
+		"poetryanalysis",
+		"RandomUser",
+		"randomuser",
+		"planetaryorbits",
+		"hourscounter",
+		"imagepixel",
+		"snakesandladders2",
+		"trianglecalculator"
 	],
 	:ringallegro = 	[
 		"gameengine",
 		"flappybird3000",
-		"fifteenpuzzle3d",
 		"goldmagic800",
 		"tictactoe3d",
 		"sample3dcamera",
@@ -146,7 +157,8 @@ aAllPackagesInfo = [
 		"ringsamples",
 		"sokoban",
 		"maze",
-		"snake"
+		"snake",
+		"eightpuzzle3d"
 	],
 	:ringlibsdl = 	[
 		"gameengine"
@@ -212,7 +224,14 @@ aAllPackagesInfo = [
 		"chessendgame",
 		"CitationsPrediction",
 		"mergetwofiles",
-		"poetryanalysis"
+		"poetryanalysis",
+		"RandomUser",
+		"randomuser",
+		"planetaryorbits",
+		"hourscounter",
+		"imagepixel",
+		"snakesandladders2",
+		"trianglecalculator"
 	],
 	:findinfiles = 	[
 		"ringnotepad"
@@ -224,7 +243,6 @@ aAllPackagesInfo = [
 		"ringnotepad"
 	],
 	:ringopengl21 = 	[
-		"fifteenpuzzle3d",
 		"goldmagic800",
 		"tictactoe3d",
 		"sample3dcamera",
@@ -234,7 +252,8 @@ aAllPackagesInfo = [
 		"sample3dmovablecube",
 		"sample3dcube",
 		"sample3dstars",
-		"sample3dlevelsofcubes"
+		"sample3dlevelsofcubes",
+		"eightpuzzle3d"
 	],
 	:gameengine = 	[
 		"pong",
@@ -244,7 +263,9 @@ aAllPackagesInfo = [
 		"androidringlibsdl",
 		"tetris",
 		"escape",
-		"towersofhanoi"
+		"towersofhanoi",
+		"RandomUser",
+		"randomuser"
 	],
 	:ringallegro = 	[
 		"squarespuzzle"
@@ -252,7 +273,9 @@ aAllPackagesInfo = [
 	:ringraylib = 	[
 		"typingquiz",
 		"pong2game",
-		"spaceshootergame"
+		"spaceshootergame",
+		"RandomUser",
+		"randomuser"
 	],
 	:zerolib = 	[
 
@@ -313,9 +336,59 @@ aAllPackagesInfo = [
 		"CitationsPrediction"
 	],
 	:jsonlib = 	[
-		"CitationsPrediction"
+		"CitationsPrediction",
+		"RandomUser",
+		"randomuser"
 	],
 	:weblib = 	[
-		"httplib"
+		"httplib",
+		"RandomUser",
+		"randomuser"
+	],
+	:httplib = 	[
+		"RandomUser",
+		"randomuser"
+	],
+	:libdepwin_allegro5271 = 	[
+
+	],
+	:readfiles = 	[
+
+	],
+	:matrixlib = 	[
+		"planetaryorbits"
+	],
+	:ringhelpchm = 	[
+
+	],
+	:ringfastpro = 	[
+		"imagepixel"
+	],
+	:imagepixel = 	[
+
+	],
+	:ringstbimage = 	[
+		"imagepixel"
+	],
+	:ringopengl32 = 	[
+
+	],
+	:ringwinapi = 	[
+		"winstartupmanager"
+	],
+	:ringwincreg = 	[
+		"winstartupmanager"
+	],
+	:ringhelppdf = 	[
+
+	],
+	:ringhelphtml = 	[
+
+	],
+	:cloc = 	[
+
+	],
+	:snakesandladders2 = 	[
+
 	]
 ]

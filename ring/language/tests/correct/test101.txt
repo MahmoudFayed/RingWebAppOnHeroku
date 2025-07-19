@@ -1,2 +1,0 @@
-name: Gal
-name: Bert

@@ -1,19 +1,45 @@
-![Ring](http://ring-lang.sf.net/thering.jpg)
+![Ring](https://ring-lang.github.io/theringlogo.jpg)
 
 # Ring Programming Language
 
 ## Building using macOS
 
+This version is tested using macOS Catalina (version 10.15)
+
 ### Get the source code
 
+Using HTTP
+
 	git clone http://github.com/ring-lang/ring.git
-	
+
+Or using SSH
+
+        git clone git@github.com:ring-lang/ring.git
+
+
 ### Install homebrew (follow the directions on [homebrew's homepage](http://brew.sh/)).
 	
 ### Install Libraries 
 	
-	cd ring/language/src
+	cd ring/build
 	./installdepmac.sh 
+
+## Complete Build (Compiler/VM, Extensions, Tools, etc.)
+
+This will build everything
+
+	cd ring/build
+	./buildclang.sh
+
+### To be able to call ring from any folder 
+	cd ring/bin
+	sudo ./install.sh
+	
+### Run Ring Notepad
+	
+	ringpm run ringnotepad
+
+## Custom Build
 	
 ### Build Ring (Compiler/VM)
 	
@@ -22,7 +48,7 @@
 ### Build Ring2EXE 
 
 	cd ring/tools/ring2exe
-	sudo ./buildring2exe.sh	
+	sudo ./build.sh	
 
 ### Generate RingConsoleColors Source Code and Build 
 	
@@ -50,8 +76,18 @@
 ### Build RingPM
 
 	cd ring/tools/ringpm
-	sudo ./buildringpm.sh	
-	
+	sudo ./build.sh	
+
+### Build RingREPL
+
+	cd ring/tools/ringrepl
+	sudo ./build.sh	
+
+### Build Folder2QRC
+
+	cd ring/tools/folder2qrc
+	sudo ./build.sh	
+
 ### Build RingODBC
 	
 	cd ../extensions/ringodbc
@@ -113,7 +149,9 @@ Starting from OpenGL 1.1 to OpenGL 4.6
 ### Generate RingQt Source Code and Build
 	
 	cd ring/extensions/ringqt
-	./gencodemac.sh
+	./gencode_light.sh
+	./buildclang_light.sh
+	./gencode.sh
 	./buildclang.sh
 
 ### To be able to call ring from any folder 
@@ -122,5 +160,10 @@ Starting from OpenGL 1.1 to OpenGL 4.6
 	
 ### Run Ring Notepad
 	
-	cd ring/tools/ringnotepad
-	ring rnote.ring
+	ringpm run ringnotepad
+
+### More Extensions
+
+The previous steps demonstrates building Ring and some of the Ring extensions.
+
+There are more extensions in ring/extensions folder like RingCJSON, RingHTTPLib, etc.

@@ -91,9 +91,9 @@ int CodeEditor::lineNumberAreaWidth()
         ++digits;
     }
 
-    int space = 3 + fontMetrics().horizontalAdvance(QLatin1Char('9')) * digits;
+    int space = 3 + document()->defaultFont().pointSize() * digits;
 
-    return space*2;
+    return space;
 }
 
 
@@ -132,7 +132,7 @@ void CodeEditor::lineNumberAreaPaintEvent(QPaintEvent *event)
     QPainter painter(lineNumberArea);
 
     QFont font = painter.font() ;
-    font.setPointSize(fontMetrics().height());
+    font.setPointSize(document()->defaultFont().pointSize());
     painter.setFont(font);
 
     painter.fillRect(event->rect(), this->areaBackColor);
@@ -241,8 +241,17 @@ void CodeEditor::keyPressEvent(QKeyEvent *e)
   	  		str=list.join("\n");
  	   		cur.removeSelectedText();
    	 		cur.insertText(str);
-   	 		cur.setPosition(std::min(a,p));
-    			cur.setPosition(std::max(a,p)+list.count(), QTextCursor::KeepAnchor);
+
+			if (a < p)
+   	 			cur.setPosition(a);
+			else 
+   	 			cur.setPosition(p);
+
+			if (a > p)
+    				cur.setPosition(a+list.count(), QTextCursor::KeepAnchor);
+			else 
+    				cur.setPosition(p+list.count(), QTextCursor::KeepAnchor);
+
     			setTextCursor(cur);
 			e->accept();
 			blockSignals(false);
@@ -270,8 +279,17 @@ void CodeEditor::keyPressEvent(QKeyEvent *e)
     			str=list.join("\n");
     			cur.removeSelectedText();
     			cur.insertText(str);
-    			cur.setPosition(std::min(a,p));
-  			cur.setPosition(std::max(a,p)-m, QTextCursor::KeepAnchor);
+
+			if (a<p)
+    				cur.setPosition(a);
+			else 
+    				cur.setPosition(p);
+
+			if (a>p)
+  				cur.setPosition(a-m, QTextCursor::KeepAnchor);
+			else 
+				cur.setPosition(p-m, QTextCursor::KeepAnchor);
+
     			setTextCursor(cur);
 			e->accept();
 			blockSignals(false);

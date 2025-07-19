@@ -1,17 +1,47 @@
-![Ring](http://ring-lang.sf.net/thering.jpg)
+![Ring](https://ring-lang.github.io/theringlogo.jpg)
 
 # Ring Programming Language
 
 ## Building using Ubuntu Linux 
 
+This version is tested using Ubuntu 24.04 LTS
+
+### Upgrade the packages 
+
+	sudo apt-get update && sudo apt-get upgrade
+
+### Install Git
+
+	sudo apt-get install git
+
 ### Get the source code
 
+Using HTTP
+
 	git clone https://github.com/ring-lang/ring.git
+
+Or using SSH
+
+	git clone git@github.com:ring-lang/ring.git
 	
 ### Install Libraries 
 	
-	cd ring/language/src
-	./installdep.sh 
+	cd ring/build
+	./installdepubuntu.sh 
+
+## Complete Build (Compiler/VM, Extensions, Tools, etc.)
+
+This will build everything (Also, will call ring/bin/install.sh)
+
+	cd ring/build
+	./buildgcc.sh
+
+### Run Ring Notepad
+	
+	ringpm run ringnotepad
+
+
+## Custom Build
 	
 ### Build Ring (Compiler/VM)
 	
@@ -20,7 +50,7 @@
 ### Build Ring2EXE 
 
 	cd ring/tools/ring2exe
-	sudo ./buildring2exe.sh	
+	sudo ./build.sh	
 
 ### Generate RingConsoleColors Source Code and Build 
 	
@@ -48,7 +78,17 @@
 ### Build RingPM
 
 	cd ring/tools/ringpm
-	sudo ./buildringpm.sh	
+	sudo ./build.sh	
+
+### Build RingREPL
+
+	cd ring/tools/ringrepl
+	sudo ./build.sh	
+
+### Build Folder2QRC
+
+	cd ring/tools/folder2qrc
+	sudo ./build.sh	
 	
 ### Build RingODBC
 	
@@ -123,6 +163,8 @@ Starting from OpenGL 1.1 to OpenGL 4.6
 ### Generate RingQt Source Code and Build
 	
 	cd ring/extensions/ringqt
+	./gencode_light.sh
+	./buildgcc_light.sh
 	./gencode.sh
 	./buildgcc.sh
 
@@ -132,6 +174,10 @@ Starting from OpenGL 1.1 to OpenGL 4.6
 	
 ### Run Ring Notepad
 	
-	cd ring/tools/ringnotepad
-	sudo ring rnote.ring
+	ringpm run ringnotepad
 
+### More Extensions
+
+The previous steps demonstrates building Ring and some of the Ring extensions.
+
+There are more extensions in ring/extensions folder like RingCJSON, RingHTTPLib, etc.

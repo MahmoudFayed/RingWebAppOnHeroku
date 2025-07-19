@@ -5,11 +5,11 @@ aPackageInfo = [
 	:developer = "Mahmoud Fayed",
 	:email = "msfclipper@yahoo.com",
 	:license = "MIT License",
-	:version = "1.0.3",
-	:ringversion = "1.13",
+	:version = "1.0.8",
+	:ringversion = "1.21",
 	:versions = 	[
 		[
-			:version = "1.0.3",
+			:version = "1.0.8",
 			:branch = "master"
 		]
 	],
@@ -29,6 +29,7 @@ aPackageInfo = [
 		"extensions/ringpostgresql/buildclang.sh",
 		"extensions/ringpostgresql/buildgcc.sh",
 		"extensions/ringpostgresql/buildvc.bat",
+		"extensions/ringpostgresql/buildvc_x64.bat",
 		"extensions/ringpostgresql/gencode.bat",
 		"extensions/ringpostgresql/gencode.sh",
 		"extensions/ringpostgresql/pgsql.cf",

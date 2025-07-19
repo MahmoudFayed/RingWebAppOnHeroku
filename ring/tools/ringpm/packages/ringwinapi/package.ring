@@ -5,11 +5,11 @@ aPackageInfo = [
 	:developer = "Mahmoud Fayed",
 	:email = "msfclipper@yahoo.com",
 	:license = "MIT License",
-	:version = "1.0.1",
-	:ringversion = "1.13",
+	:version = "1.0.8",
+	:ringversion = "1.21",
 	:versions = 	[
 		[
-			:version = "1.0.1",
+			:version = "1.0.8",
 			:branch = "master"
 		]
 	],
@@ -25,14 +25,18 @@ aPackageInfo = [
 		"README.md"
 	],
 	:ringfolderfiles = 	[
+		"bin/load/winapi.ring",
+		"bin/ring_winapi.dll",
 		"extensions/ringwinapi/bin/ring_winapi.dll",
 		"extensions/ringwinapi/bin/winapi.rh",
 		"extensions/ringwinapi/bin/winapi.ring",
 		"extensions/ringwinapi/buildvc.bat",
+		"extensions/ringwinapi/buildvc_x64.bat",
 		"extensions/ringwinapi/Documentation.txt",
 		"extensions/ringwinapi/LICENSE.md",
 		"extensions/ringwinapi/README.md",
-		"extensions/ringwinapi/ring_winapi.c"
+		"extensions/ringwinapi/ring_winapi.c",
+		"tools/ring2exe/libs/winapi.ring"
 	],
 	:windowsfiles = 	[
 

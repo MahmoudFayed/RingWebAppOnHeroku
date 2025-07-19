@@ -5,11 +5,11 @@ aPackageInfo = [
 	:developer = "msfclipper@yahoo.com",
 	:email = "msfclipper@yahoo.com",
 	:license = "MIT License",
-	:version = "1.0.1",
-	:ringversion = "1.13",
+	:version = "1.0.7",
+	:ringversion = "1.21",
 	:versions = 	[
 		[
-			:version = "1.0.1",
+			:version = "1.0.7",
 			:branch = "master"
 		]
 	],
@@ -25,10 +25,13 @@ aPackageInfo = [
 		"README.md"
 	],
 	:ringfolderfiles = 	[
+		"bin/load/wincreg.ring",
+		"bin/ring_Wincreg.dll",
 		"extensions/ringwincreg/bin/ring_wincreg.dll",
 		"extensions/ringwincreg/bin/wincreg.rh",
 		"extensions/ringwincreg/bin/wincreg.ring",
 		"extensions/ringwincreg/buildvc.bat",
+		"extensions/ringwincreg/buildvc_x64.bat",
 		"extensions/ringwincreg/creg_regentry.h",
 		"extensions/ringwincreg/creg_registry.cpp",
 		"extensions/ringwincreg/creg_registry.h",
@@ -107,7 +110,8 @@ aPackageInfo = [
 		"extensions/ringwincreg/README.md",
 		"extensions/ringwincreg/ring_wincreg.cpp",
 		"extensions/ringwincreg/ring_wincreg.dll.manifest",
-		"extensions/ringwincreg/ring_wincreg.h"
+		"extensions/ringwincreg/ring_wincreg.h",
+		"tools/ring2exe/libs/wincreg.ring"
 	],
 	:windowsfiles = 	[
 

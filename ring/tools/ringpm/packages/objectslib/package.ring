@@ -5,11 +5,11 @@ aPackageInfo = [
 	:developer = "",
 	:email = "",
 	:license = "MIT License",
-	:version = "1.0.0",
-	:ringversion = "1.13",
+	:version = "1.0.4",
+	:ringversion = "1.21",
 	:versions = 	[
 		[
-			:version = "1.0.0",
+			:version = "1.0.4",
 			:branch = "master"
 		]
 	],

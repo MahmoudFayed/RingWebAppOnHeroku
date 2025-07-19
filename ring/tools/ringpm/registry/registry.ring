@@ -212,15 +212,15 @@ aPackagesRegistry = [
 	  :ProviderUserName = "ringpackages"
 	],
 	[ :name = "employee",
-	  :description = "Empoyee application for the Ring programming language",
+	  :description = "Employee application for the Ring programming language",
 	  :ProviderUserName = "ringpackages"
 	],
 	[ :name = "fifteenpuzzle",
 	  :description = "FifteenPuzzle game for the Ring programming language",
 	  :ProviderUserName = "ringpackages"
 	],
-	[ :name = "fifteenpuzzle3d",
-	  :description = "FifteenPuzzle3D game for the Ring programming language",
+	[ :name = "eightpuzzle3d",
+	  :description = "EightPuzzle3D game for the Ring programming language",
 	  :ProviderUserName = "ringpackages"
 	],
 	[ :name = "game2048",
@@ -658,5 +658,157 @@ aPackagesRegistry = [
         [ :name = "erlangbformula",
           :description = "Erlang B Formula package for the Ring programming language",
           :ProviderUserName = "ringpackages"
-        ]
+        ],
+	[ :name = "Chess3D-Qt3D",
+          :description = "Chess3D in Ring language",
+          :ProviderUserName = "ringpackages"
+        ],
+	[ :name = "chessendgame",
+          :description = "ChessEndGame package for the Ring programming language",
+          :ProviderUserName = "ringpackages"
+        ],
+	[ :name = "csvlib",
+          :description = "CSVLib library for the Ring programming language",
+          :ProviderUserName = "ringpackages"
+        ],
+	[ :name = "tokenslib",
+          :description = "TokensLib library for the Ring programming language",
+          :ProviderUserName = "ringpackages"
+        ],
+	[ :name = "jsonlib",
+          :description = "JSONLib library for the Ring programming language",
+          :ProviderUserName = "ringpackages"
+        ],
+	[ :name = "libdepwin_allegro5271",
+	  :description = "LibDepWin_Allegro5271 package for the Ring programming language",
+	  :ProviderUserName = "ringpackages"
+	],
+	[ :name = "citationsprediction",
+	  :description = "Citations Prediction application package for the Ring programming language",
+	  :ProviderUserName = "ringpackages"
+	],
+	[ :name = "mergetwofiles",
+	  :description = "Merge Two Files application package for the Ring programming language",
+	  :ProviderUserName = "ringpackages"
+	],
+	[ :name = "poetryanalysis",
+	  :description = "Poetry Analysis application package for the Ring programming language",
+	  :ProviderUserName = "ringpackages"
+	],
+	[ :name = "Rosetta-Ring-Sample",
+	  :description = "Our Rosetta-Ring-Sample package using the Ring programming language",
+	  :ProviderUserName = "Azzeddine2017"
+	],
+	[ :name = "dogapi",
+	  :description = "Dog API client",
+	  :ProviderUserName = "thexxiv"
+	],
+	[ :name = "regex",
+	  :description = "An easy to use pattern matching",
+	  :ProviderUserName = "thexxiv"
+	],
+	[ :name = "stzlib",
+	  :description = "Softanza Library for the Ring programming language",
+	  :ProviderUserName = "mayouni"
+	],
+	[ :name = "httplib",
+	  :description = "RingHTTPLib package for the Ring programming language",
+	  :ProviderUserName = "ringpackages"
+	],
+	[ :name = "randomuser",
+	  :description = "RandomUser package for the Ring programming language",
+	  :ProviderUserName = "ringpackages"
+	],
+	[ :name = "libdepwin_allegro528",
+	  :description = "LibDepWin_Allegro528 package for the Ring programming language",
+	  :ProviderUserName = "ringpackages"
+	],
+	[ :name = "readfiles",
+	  :description = "ReadFiles package for the Ring programming language",
+	  :ProviderUserName = "ringpackages"
+	],
+	[ :name = "matrixlib",
+          :description = "MatrixLib library for the Ring programming language",
+          :ProviderUserName = "ringpackages"
+        ],
+	[ :name = "listentoquran",
+          :description = "ListenToQuran application for the Ring programming language",
+          :ProviderUserName = "ringpackages"
+        ],
+	[ :name = "planetaryorbits",
+          :description = "PlantaryOrbits application for the Ring programming language",
+          :ProviderUserName = "ringpackages"
+        ],
+	[ :name = "hourscounter",
+          :description = "HoursCounter application for the Ring programming language",
+          :ProviderUserName = "ringpackages"
+        ],
+	[ :name = "ringfastpro",
+          :description = "RingFastPro extension for the Ring programming language",
+          :ProviderUserName = "ringpackages"
+        ],
+	[ :name = "imagepixel",
+          :description = "ImagePixel application for the Ring programming language",
+          :ProviderUserName = "ringpackages"
+        ],
+	[ :name = "ringwinlib",
+          :description = "RingWinLib extension for the Ring programming language",
+          :ProviderUserName = "ringpackages"
+        ],
+	[ :name = "ringthreads",
+          :description = "RingThreads extension for the Ring programming language",
+          :ProviderUserName = "ringpackages"
+        ],
+	[ :name = "extensionstutorials",
+          :description = "Extensions tutorials for the Ring programming language",
+          :ProviderUserName = "ringpackages"
+        ],
+	[ :name = "ringtilengine",
+          :description = "RingTilengine extension for the Ring programming language",
+          :ProviderUserName = "ringpackages"
+        ],
+	[ :name = "dotenv",
+          :description = "dotenv package for the Ring programming language",
+          :ProviderUserName = "ysdragon"
+        ],
+	[ :name = "SysInfo",
+          :description = "A package to retrieve essential system information for the Ring programming language",
+          :ProviderUserName = "ysdragon"
+        ],
+	[ :name = "ringregex",
+          :description = "Regular expression library built on top of the PCRE2",
+          :ProviderUserName = "azzeddine2017"
+        ],
+	[ :name = "RingThreadPro",
+          :description = "Threads management library",
+          :ProviderUserName = "azzeddine2017"
+        ],
+	[ :name = "ringsubprocess",
+          :description = "subprocess management extension for creating and managing system processes",
+          :ProviderUserName = "azzeddine2017"
+        ],
+	[ :name = "Advanced-Trace",
+          :description = "Performance analysis and concurrent operations tracing",
+          :ProviderUserName = "azzeddine2017"
+        ],
+	[ :name = "markdown",
+          :description = "A Markdown parser and HTML converter extension for the Ring programming language",
+          :ProviderUserName = "ysdragon"
+        ],
+	[ :name = "Adhkar_Ring_App",
+          :description = "Application: Adhkar (Arabic/WebAssembly)",
+          :ProviderUserName = "mohannad-aldulaimi"
+        ],
+	[ :name = "toml",
+          :description = "A comprehensive TOML parser extension for the Ring programming language",
+          :ProviderUserName = "ysdragon"
+        ],
+	[ :name = "snakesandladders2",
+	  :description = "SnakesAndLadders2 Game for the Ring programming language",
+	  :ProviderUserName = "ringpackages"
+	],
+	[ :name = "trianglecalculator",
+	  :description = "TriangleCalculator application for the Ring programming language",
+	  :ProviderUserName = "ringpackages"
+	]
 ]

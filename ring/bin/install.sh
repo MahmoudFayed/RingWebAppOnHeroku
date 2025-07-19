@@ -156,6 +156,20 @@ sudo ln -sf "`pwd`/lib/libringqt_light.so" /usr/lib
 sudo ln -sf "`pwd`/lib/libringqt_light.so" /usr/lib64
 fi
 
+# Make the RingQt (Core) library ready for use directly
+	
+if [ -f lib/libringqt_core.dylib ];
+then
+ln -sf "`pwd`/lib/libringqt_core.dylib" /usr/local/lib
+xattr -d com.apple.quarantine /usr/local/lib/libringqt_core.dylib
+fi
+
+if [ -f lib/libringqt_core.so ];
+then
+sudo ln -sf "`pwd`/lib/libringqt_core.so" /usr/lib
+sudo ln -sf "`pwd`/lib/libringqt_core.so" /usr/lib64
+fi
+
 # Make the RingLibCurl library ready for use directly
 
 if [ -f lib/libring_libcurl.dylib ];
@@ -493,7 +507,7 @@ if [ -f lib/libringraylib.dylib ];
 then
 ln -sf "`pwd`/lib/libringraylib.dylib" /usr/local/lib
 xattr -d com.apple.quarantine /usr/local/lib/libringraylib.dylib
-cp extensions/ringraylib/src/macOS_raylib-2.5/lib/libraylib.* /usr/local/lib
+cp extensions/ringraylib5/src/macOS_raylib-5/lib/libraylib.* /usr/local/lib
 xattr -d com.apple.quarantine /usr/local/lib/libraylib.*
 fi
 
@@ -501,8 +515,8 @@ if [ -f lib/libringraylib.so ];
 then
 sudo ln -sf "`pwd`/lib/libringraylib.so" /usr/lib
 sudo ln -sf "`pwd`/lib/libringraylib.so" /usr/lib64
-sudo cp extensions/ringraylib/src/linux_raylib-2.5/lib/libraylib.so.* /usr/lib
-sudo cp extensions/ringraylib/src/linux_raylib-2.5/lib/libraylib.so.* /usr/lib64
+sudo cp extensions/ringraylib5/src/linux_raylib-5/lib/libraylib.so.* /usr/lib
+sudo cp extensions/ringraylib5/src/linux_raylib-5/lib/libraylib.so.* /usr/lib64
 fi
 
 # Make the RingSockets library ready for use directly
@@ -577,4 +591,70 @@ if [ -f lib/libring_httplib.so ];
 then
 sudo ln -sf "`pwd`/lib/libring_httplib.so" /usr/lib
 sudo ln -sf "`pwd`/lib/libring_httplib.so" /usr/lib64
+fi
+
+# Make the RingStbImage library ready for use directly
+
+if [ -f lib/libring_stbimage.dylib ];
+then
+ln -sf "`pwd`/lib/libring_stbimage.dylib" /usr/local/lib
+xattr -d com.apple.quarantine /usr/local/lib/libring_stbimage.dylib
+fi
+
+if [ -f lib/libring_stbimage.so ];
+then
+sudo ln -sf "`pwd`/lib/libring_stbimage.so" /usr/lib
+sudo ln -sf "`pwd`/lib/libring_stbimage.so" /usr/lib64
+fi
+
+# Make the RingFastPro library ready for use directly
+
+if [ -f lib/libring_fastpro.dylib ];
+then
+ln -sf "`pwd`/lib/libring_fastpro.dylib" /usr/local/lib
+xattr -d com.apple.quarantine /usr/local/lib/libring_fastpro.dylib
+fi
+
+if [ -f lib/libring_fastpro.so ];
+then
+sudo ln -sf "`pwd`/lib/libring_fastpro.so" /usr/lib
+sudo ln -sf "`pwd`/lib/libring_fastpro.so" /usr/lib64
+fi
+
+# Make the RingRogueUtil library ready for use directly
+
+if [ -f lib/libring_rogueutil.dylib ];
+then
+ln -sf "`pwd`/lib/libring_rogueutil.dylib" /usr/local/lib
+xattr -d com.apple.quarantine /usr/local/lib/libring_rogueutil.dylib
+fi
+
+if [ -f lib/libring_rogueutil.so ];
+then
+sudo ln -sf "`pwd`/lib/libring_rogueutil.so" /usr/lib
+sudo ln -sf "`pwd`/lib/libring_rogueutil.so" /usr/lib64
+fi
+
+# Make the RingTilengine library ready for use directly
+
+if [ -f lib/libring_tilengine.so ];
+then
+sudo ln -sf "`pwd`/lib/libring_tilengine.so" /usr/lib
+sudo ln -sf "`pwd`/lib/libring_tilengine.so" /usr/lib64
+sudo cp extensions/ringtilengine/linux_tilengine/lib/*.so /usr/lib
+sudo cp extensions/ringtilengine/linux_tilengine/lib/*.so /usr/lib64
+fi
+
+# Make the RingPDFGen library ready for use directly
+
+if [ -f lib/libring_pdfgen.dylib ];
+then
+ln -sf "`pwd`/lib/libring_pdfgen.dylib" /usr/local/lib
+xattr -d com.apple.quarantine /usr/local/lib/libring_pdfgen.dylib
+fi
+
+if [ -f lib/libring_pdfgen.so ];
+then
+sudo ln -sf "`pwd`/lib/libring_pdfgen.so" /usr/lib
+sudo ln -sf "`pwd`/lib/libring_pdfgen.so" /usr/lib64
 fi

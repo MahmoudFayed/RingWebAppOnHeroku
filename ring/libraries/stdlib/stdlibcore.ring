@@ -3,6 +3,7 @@
 # 2016-2019, Mahmoud Fayed <msfclipper@yahoo.com>
 # 2016-2019, CalmoSoft <calmosoft@gmail.com>
 # 2020, Bert Mariani (Matrix Multiplication)
+# 2023, Dan Campbell (Reduce function)
 
 Load "stdlib.rh"
 Load "stdfunctions.ring"
@@ -113,6 +114,10 @@ func JustFileName cFile
 	Output		: the new copy of the list or the object
 */
 Func Value vlistorobj
+	if refcount(vlistorobj) > 1
+		raise("The Value() function doesn't support references")
+		return
+	ok
 	vlistorobj2 = vlistorobj
 	return vlistorobj2
 
@@ -155,6 +160,58 @@ Func Filter alist,cFunc
 	next
 	return alist2
 
+/*
+	Function Name	: reduce
+	Usage		: apply function cFunc to each result xResult from a list aList, return an accumulated value xResult
+	Parameters	: the list aList, Function cFunc, and optional initial value xInitial as variant
+	Output		: final value after applying the function iteratively to each result
+	Note		: the input list aList, the optional intial value xInitial and the output xResult, need to be the same Type
+*/
+Func Reduce aList,cFunc,xInitial
+	nNthElement = 0
+	xNthElement = NULL
+	nStart = 1
+	nLength = 0
+	sNthElementType = NULL
+	sElementType = NULL
+
+	If Not IsList( aList )
+		Raise( "aList should be a list.  Instead, it's a " + Type( aList ) )
+	Ok
+	nLength = Len(aList)
+
+	If Not IsFunction(cFunc)
+		Raise( cFunc + " is not a function." )
+	Ok
+
+	if IsNULL(xInitial)
+		// If the list is non-empty, then default xInitial to its first element
+		if nLength>0
+			xInitial = aList[1]
+			nStart = 2
+			sElementType = Type( xInitial )
+		else
+			raise("if xInitial is NULL, then Reduce() requires a non-empty list aList")
+		Ok
+	Else
+		// If the List doesn't have at least one member, then return xInitial
+		if nLength < 1
+			xResult = xInitial
+			return xResult
+		Ok
+	Ok
+	sElementType = Type( xInitial )
+	xResult = xInitial
+	// Loop through all of aList, and return an accumulated value after successfully applying cFunc to each result.
+	for nElement = nStart to nLength
+		xNthElement = aList[nElement]
+		sNthElementType = Type(xNthElement)
+		If Not sNthElementType = sElementType
+			Raise( "At least one of the elements in aList is " + sNthElementType + ".  It should be " + sElementType )
+		Ok
+		xResult = call cFunc(xResult,xNthElement)
+	next
+	return xResult
 
 /*
 	Function Name	: split
@@ -179,21 +236,24 @@ Func Split(cString, delimiter)
 	singleSpace = " "
 	singleTab   = char(9)
 	
-	if ( (delimiter = singleTab) or (delimiter = singleSpace) )
+	if delimiter = singleTab
 		delimiter = singleSpace
 	ok
 
 	if ( delimiter = singleSpace )
+		# Replace Tab with Space
 		do
-			cString = substr(cstring, singleTab, singleSpace)   ### Replace Tab with Space
+			cString = substr(cstring, singleTab, singleSpace)   
 		again substr(cString, singleTab)
 
+		# Replace DoubleSpace with Space
 		do
-			cString = substr(cString, doubleSpace, singleSpace) ### Replace DoubleSpace with Space
+			cString = substr(cString, doubleSpace, singleSpace) 
 		again substr(cString, doubleSpace)
 	ok
 	
-	cString = trim(cString) ### Remove leading and trailing spaces
+	# Remove leading and trailing spaces
+	cString  = trim(cString) 
 	cStrList = str2list(substr(cString, delimiter, nl))
 
 	return cStrList
@@ -273,7 +333,7 @@ Func LineCount text
 	Output		: factorial of a number.
 */
 
-Func Factorial n if n = 0 return 1 else return n * factorial(n-1) ok
+Func Factorial n  if n = 0 return 1 ok nRes = 1 for t=1 to n nRes *= t next return nRes
 
 /*
 	Function Name	: fibonacci
@@ -285,7 +345,13 @@ Func Factorial n if n = 0 return 1 else return n * factorial(n-1) ok
 Func Fibonacci n
 	if n = 0 return 0 ok
 	if n = 1 return 1 ok 
-	if n > 1 return fibonacci(n-1) + fibonacci(n-2) ok
+	aFibRes = [ ["0", 0], ["1", 1] ]
+	if n > 1
+		for t=2 to n
+			aFibRes[""+t] = aFibRes[""+(t-1)] + aFibRes[""+(t-2)]
+		next 
+		return aFibRes[""+n]
+	ok
     
 /*
 	Function Name	: isprime
@@ -515,11 +581,11 @@ Func Matrixmulti A, B
 			Sum = 0
 			for k = 1 to horzA             
 				Sum += A[vA][k] * B[k][hB]    
-				if FlagShowSolution = 1                  // 0 No Show, 1 = Show Solution
+				if C_FLAGSHOWSOLUTION = 1                  // 0 No Show, 1 = Show Solution
 					See " "+ A[vA][k] +"*"+ B[k][hB]
 				ok
 			next
-			if FlagShowSolution = 1 
+			if C_FLAGSHOWSOLUTION = 1 
 				See " = "+ Sum  +"  C"+ vA + hB +nl
 			ok
 			C[va][hB] = Sum          
@@ -631,6 +697,10 @@ Func permutationReverse a, first, last
 */          
      
 Func Sleep x
+	if isString(x) x = number(x) ok
+	if ! isNumber(x) raise("Bad parameter type!") ok
+	if SysSleep(x*1000) return ok
+
 	nTime = x * C_SECONDSIZE
 	nClock = clock()
 	while clock() - nClock < nTime end
@@ -698,26 +768,6 @@ Func MakeDir cFolder
 		SystemSilent("mkdir -p " + cFolder)
 	ok
 	
-/*
-	Function Name	: sortFirstSecond
-	Usage		: Sort a list on first or second index
-	Parameters	: list to sort
-	Output          : sorted list 
-*/ 
-
-Func sortFirstSecond aList, ind
-	aList = sort(aList,ind)
-	for n=1 to len(alist)-1
-		for m=n to len(aList)-1 
-			if ind = 1 nr = 2 else nr = 1 ok
-			if alist[m+1][ind] = alist[m][ind] and alist[m+1][nr] < alist[m][nr]
-				temp = alist[m+1]
-				alist[m+1] = alist[m]
-				alist[m] = temp ok
-             next
-	next
-	return aList
-
 Func Fsize(fh)
 	Fseek(fh,0,2)
 	size = Ftell(fh)
@@ -807,10 +857,12 @@ Func chomp(cStr)
 */
 
 func SystemCmd(cmd)
-	System(cmd + "> cmd.txt")
-	cStr = read("cmd.txt")
+	# generate writable temporary file path to use for command output
+	cTmpFilePath = tempname()
+	System(cmd + "> " + cTmpFilePath)
+	cStr = read(cTmpFilePath)
 	# delete result file after get value
-	OSDeleteFile("cmd.txt")
+	OSDeleteFile(cTmpFilePath)
 	if right(cStr,1) = nl
 		cStr = left(cStr,len(cStr)-1)
 	ok
@@ -900,10 +952,16 @@ func OSCreateOpenFolder cFolder
 func OSCopyFolder cParentFolder,cFolder
 	cCurrentFolder = currentdir()
 	OSCreateOpenFolder(cFolder)
+	cCompleteFolderPath = cParentFolder + cFolder
+	if len(cCompleteFolderPath) >= 1
+		if cCompleteFolderPath[1] != '"'
+			cCompleteFolderPath = '"' + cCompleteFolderPath + '"'
+		ok
+	ok
 	if isWindows()
-		systemsilent("xcopy /e " + cParentFolder + cFolder)
+		systemsilent("xcopy /e /y /j " + cCompleteFolderPath)
 	else 
-		systemsilent("cp -R " + cParentFolder + cFolder + " ./")
+		systemsilent("cp -R " + cCompleteFolderPath + " ../")
 	ok
 	chdir(cCurrentFolder)
 
@@ -923,6 +981,11 @@ func OSDeleteFolder cFolder
 */
 func OSCopyFile cFile
 	if isWindows()
+		if len(cFile) >= 1
+			if cFile[1] != '"'
+				cFile = '"' + cFile + '"'
+			ok
+		ok
 		cFile = substr(cFile,"/","\")
 		systemSilent("copy " + cFile)
 	else 
@@ -1014,6 +1077,117 @@ func ASCIIList2Str aList
 	return cStr 
 
 /*
+	Function Name	: StringToBase64 
+	Usage		: Convert a string to base64 encoded string
+	Parameters	: String to encode
+	Output		: Base64 encoded string
+*/
+func StringToBase64 cInputString
+    cBase64Chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/"
+    cOutputString = ""
+    nInputLen = len(cInputString)
+
+    if nInputLen = 0
+        return NULL
+    ok
+
+    nInputIndex = 1
+    while nInputIndex <= nInputLen
+        nByte1 = ascii(cInputString[nInputIndex])
+        nInputIndex++
+        
+        nByte2 = NULL
+        if nInputIndex <= nInputLen
+            nByte2 = ascii(cInputString[nInputIndex])
+            nInputIndex++
+        ok
+        
+        nByte3 = NULL
+        if nInputIndex <= nInputLen
+            nByte3 = ascii(cInputString[nInputIndex])
+            nInputIndex++
+        ok
+
+        nEnc1 = nByte1 >> 2
+        cOutputString += cBase64Chars[nEnc1 + 1]
+
+        nEnc2 = (nByte1 & 3) << 4
+        if not isNull(nByte2)
+            nEnc2 = nEnc2 | (nByte2 >> 4)
+        ok
+        cOutputString += cBase64Chars[nEnc2 + 1]
+
+        if not isNull(nByte2)
+            nEnc3 = (nByte2 & 15) << 2
+            if not isNull(nByte3)
+                nEnc3 = nEnc3 | (nByte3 >> 6)
+            ok
+            cOutputString += cBase64Chars[nEnc3 + 1]
+        else 
+            cOutputString += "="
+        ok
+        
+        if not isNull(nByte3)
+            nEnc4 = nByte3 & 63
+            cOutputString += cBase64Chars[nEnc4 + 1]
+        else
+            cOutputString += "="
+        ok
+    end
+
+    return cOutputString
+
+/*
+	Function Name	: Base64ToString
+	Usage		: Convert a base64 encoded string back to original string
+	Parameters	: Base64 encoded string to decode
+	Output		: Decoded string
+*/
+func Base64ToString cInputString
+    cBase64Chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/"
+    cOutputString = NULL
+
+    cCleanInput = NULL
+    for i = 1 to len(cInputString)
+        if substr(cBase64Chars, cInputString[i]) > 0 or cInputString[i] = "="
+            cCleanInput += cInputString[i]
+        ok
+    next
+
+    nInputLen = len(cCleanInput)
+    
+    if nInputLen % 4 != 0
+        return NULL
+    ok
+    
+    nInputIndex = 1
+    while nInputIndex <= nInputLen
+        nEnc1 = substr(cBase64Chars, cInputString[nInputIndex]) - 1
+        nInputIndex++
+        nEnc2 = substr(cBase64Chars, cInputString[nInputIndex]) - 1
+        nInputIndex++
+        nEnc3 = substr(cBase64Chars, cInputString[nInputIndex]) - 1
+        nInputIndex++
+        nEnc4 = substr(cBase64Chars, cInputString[nInputIndex]) - 1
+        nInputIndex++
+        
+        nByte1 = (nEnc1 << 2) | (nEnc2 >> 4)
+        cOutputString += char(nByte1)
+        
+        if cInputString[nInputIndex - 2] != "="
+            nByte2 = ((nEnc2 & 15) << 4) | (nEnc3 >> 2)
+            cOutputString += char(nByte2)
+        ok
+        
+        if cInputString[nInputIndex - 1] != "="
+            nByte3 = ((nEnc3 & 3) << 6) | nEnc4
+            cOutputString += char(nByte3)
+        ok
+    end
+    
+    return cOutputString
+
+/*
 	Get Item from time information list
 */
 func timeInfo( item )
@@ -1096,3 +1270,18 @@ func CheckEquality aItem1, aItem2
 	else
 		return false
 	ok
+
+
+/*
+	Return Number or Zero (If the value can't be converted to a number)
+*/
+
+func NumOrZero cNum
+	if isNumber(cNum) return cNum ok
+	if isString(cNum) 
+		try
+			return number(cNum)
+		catch
+		done 
+	ok
+	return 0

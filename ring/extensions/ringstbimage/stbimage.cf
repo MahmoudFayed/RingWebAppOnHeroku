@@ -1,0 +1,224 @@
+<code>
+/* Copyright (c) 2020 Mahmoud Fayed <msfclipper@yahoo.com> */
+
+#define STB_IMAGE_IMPLEMENTATION
+#define STBI_WINDOWS_UTF8
+#include "stb_image.h"
+
+#define STB_IMAGE_WRITE_IMPLEMENTATION
+#include "stb_image_write.h"
+</code>
+
+<runcode>
+aStringTypes + "char const *"
+aStringTypes + "stbi_uc const *"
+aStringTypes + "stbi_uc *"
+aStringTypes + "const float *"
+aStringTypes + "const void *"
+</runcode>
+
+<constant>
+STBI_default
+STBI_grey
+STBI_grey_alpha
+STBI_rgb
+STBI_rgb_alpha 
+</constant>
+
+<register>
+stbi_uc *stbi_load_from_memory(stbi_uc const *buffer, int len,int *x, int *y, int *channels_in_file, int desired_channels) 
+stbi_uc *stbi_load(char const *filename, int *x, int *y, int *channels_in_file, int desired_channels) 
+stbi_uc *stbi_load_from_file(FILE *f, int *x, int *y, int *channels_in_file, int desired_channels) 
+</register>
+
+<code>
+RING_FUNC(ring_stbi_load_from_memory)
+{
+	unsigned char *pData;
+	int *p1, *p2, *p3 ;
+	if ( RING_API_PARACOUNT != 6 ) {
+		RING_API_ERROR(RING_API_BADPARACOUNT);
+		return ;
+	}
+	if ( ! RING_API_ISSTRING(1) ) {
+		RING_API_ERROR(RING_API_BADPARATYPE);
+		return ;
+	}
+	if ( ! RING_API_ISNUMBER(2) ) {
+		RING_API_ERROR(RING_API_BADPARATYPE);
+		return ;
+	}
+	if ( ! RING_API_ISSTRING(3) ) {
+		RING_API_ERROR(RING_API_BADPARATYPE);
+		return ;
+	}
+	if ( ! RING_API_ISSTRING(4) ) {
+		RING_API_ERROR(RING_API_BADPARATYPE);
+		return ;
+	}
+	if ( ! RING_API_ISSTRING(5) ) {
+		RING_API_ERROR(RING_API_BADPARATYPE);
+		return ;
+	}
+	if ( ! RING_API_ISNUMBER(6) ) {
+		RING_API_ERROR(RING_API_BADPARATYPE);
+		return ;
+	}
+	p1 = RING_API_GETINTPOINTER(3);
+	p2 = RING_API_GETINTPOINTER(4);
+	p3 = RING_API_GETINTPOINTER(5);
+	pData = stbi_load_from_memory(RING_API_GETSTRING(1), (int ) RING_API_GETNUMBER(2),p1,p2,p3, (int ) RING_API_GETNUMBER(6));
+	if ( pData == NULL ) {
+		RING_API_RETSTRING("") ;
+		return ;
+	}
+	RING_API_RETSTRING2(pData, (*p1) * (*p2) * (*p3));
+	stbi_image_free(pData);
+	RING_API_ACCEPTINTVALUE(3) ;
+	RING_API_ACCEPTINTVALUE(4) ;
+	RING_API_ACCEPTINTVALUE(5) ;
+}
+
+RING_FUNC(ring_stbi_load)
+{
+	unsigned char *pData;
+	int *p1, *p2, *p3 ;
+	if ( RING_API_PARACOUNT != 5 ) {
+		RING_API_ERROR(RING_API_BADPARACOUNT);
+		return ;
+	}
+	if ( ! RING_API_ISSTRING(1) ) {
+		RING_API_ERROR(RING_API_BADPARATYPE);
+		return ;
+	}
+	if ( ! RING_API_ISSTRING(2) ) {
+		RING_API_ERROR(RING_API_BADPARATYPE);
+		return ;
+	}
+	if ( ! RING_API_ISSTRING(3) ) {
+		RING_API_ERROR(RING_API_BADPARATYPE);
+		return ;
+	}
+	if ( ! RING_API_ISSTRING(4) ) {
+		RING_API_ERROR(RING_API_BADPARATYPE);
+		return ;
+	}
+	if ( ! RING_API_ISNUMBER(5) ) {
+		RING_API_ERROR(RING_API_BADPARATYPE);
+		return ;
+	}
+	p1 = RING_API_GETINTPOINTER(2);
+	p2 = RING_API_GETINTPOINTER(3);
+	p3 = RING_API_GETINTPOINTER(4);
+	pData = stbi_load(RING_API_GETSTRING(1),p1,p2,p3, (int ) RING_API_GETNUMBER(5));
+	if ( pData == NULL ) {
+		RING_API_RETSTRING("") ;
+		return ;
+	}
+	RING_API_RETSTRING2(pData, (*p1) * (*p2) * (*p3));
+	stbi_image_free(pData);
+	RING_API_ACCEPTINTVALUE(2) ;
+	RING_API_ACCEPTINTVALUE(3) ;
+	RING_API_ACCEPTINTVALUE(4) ;
+}
+
+RING_FUNC(ring_stbi_load_from_file)
+{
+	unsigned char *pData;
+	int *p1, *p2, *p3 ;
+	if ( RING_API_PARACOUNT != 5 ) {
+		RING_API_ERROR(RING_API_BADPARACOUNT);
+		return ;
+	}
+	if ( ! RING_API_ISCPOINTER(1) ) {
+		RING_API_ERROR(RING_API_BADPARATYPE);
+		return ;
+	}
+	if ( ! RING_API_ISSTRING(2) ) {
+		RING_API_ERROR(RING_API_BADPARATYPE);
+		return ;
+	}
+	if ( ! RING_API_ISSTRING(3) ) {
+		RING_API_ERROR(RING_API_BADPARATYPE);
+		return ;
+	}
+	if ( ! RING_API_ISSTRING(4) ) {
+		RING_API_ERROR(RING_API_BADPARATYPE);
+		return ;
+	}
+	if ( ! RING_API_ISNUMBER(5) ) {
+		RING_API_ERROR(RING_API_BADPARATYPE);
+		return ;
+	}
+	p1 = RING_API_GETINTPOINTER(2);
+	p2 = RING_API_GETINTPOINTER(3);
+	p3 = RING_API_GETINTPOINTER(4);
+	pData = stbi_load_from_file((FILE *) RING_API_GETCPOINTER(1,"FILE"),p1,p2,p3, (int ) RING_API_GETNUMBER(5)) ;
+	RING_API_RETSTRING2(pData, (*p1) * (*p2) * (*p3));
+	stbi_image_free(pData);
+	RING_API_ACCEPTINTVALUE(2) ;
+	RING_API_ACCEPTINTVALUE(3) ;
+	RING_API_ACCEPTINTVALUE(4) ;
+}
+
+
+</code>
+
+stbi_us *stbi_load_16_from_memory(stbi_uc const *buffer, int len, int *x, int *y, int *channels_in_file, int desired_channels) 
+stbi_us *stbi_load_16(char const *filename, int *x, int *y, int *channels_in_file, int desired_channels) 
+stbi_us *stbi_load_from_file_16(FILE *f, int *x, int *y, int *channels_in_file, int desired_channels) 
+float *stbi_loadf_from_memory(stbi_uc const *buffer, int len, int *x, int *y, int *channels_in_file, int desired_channels) 
+float *stbi_loadf(char const *filename, int *x, int *y, int *channels_in_file, int desired_channels) 
+float *stbi_loadf_from_file(FILE *f, int *x, int *y, int *channels_in_file, int desired_channels) 
+void stbi_hdr_to_ldr_gamma(float gamma) 
+void stbi_hdr_to_ldr_scale(float scale) 
+void stbi_ldr_to_hdr_gamma(float gamma) 
+void stbi_ldr_to_hdr_scale(float scale) 
+int stbi_is_hdr_from_memory(stbi_uc const *buffer, int len) 
+int stbi_is_hdr(char const *filename) 
+int stbi_is_hdr_from_file(FILE *f) 
+const char *stbi_failure_reason(void) 
+<comment>
+void stbi_image_free(void *retval_from_stbi_load) 
+</comment>
+int stbi_info_from_memory(stbi_uc const *buffer, int len, int *x, int *y, int *comp) 
+int stbi_is_16_bit_from_memory(stbi_uc const *buffer, int len) 
+int stbi_info(char const *filename,int *x,int *y,int *comp) 
+int stbi_info_from_file(FILE *f,int *x,int *y,int *comp) 
+int stbi_is_16_bit(char const *filename) 
+int stbi_is_16_bit_from_file(FILE *f) 
+void stbi_set_unpremultiply_on_load(int flag_true_if_should_unpremultiply) 
+void stbi_convert_iphone_png_to_rgb(int flag_true_if_should_convert) 
+void stbi_set_flip_vertically_on_load(int flag_true_if_should_flip) 
+void stbi_set_flip_vertically_on_load_thread(int flag_true_if_should_flip) 
+char *stbi_zlib_decode_malloc_guesssize(const char *buffer, int len, int initial_size, int *outlen) 
+char *stbi_zlib_decode_malloc_guesssize_headerflag(const char *buffer, int len, int initial_size, int *outlen, int parse_header) 
+char *stbi_zlib_decode_malloc(const char *buffer, int len, int *outlen) 
+int stbi_zlib_decode_buffer(char *obuffer,int olen, const char *ibuffer, int ilen) 
+char *stbi_zlib_decode_noheader_malloc(const char *buffer, int len, int *outlen) 
+int stbi_zlib_decode_noheader_buffer(char *obuffer, int olen, const char *ibuffer, int ilen)
+
+<comment>
+stbi_uc *stbi_load_gif_from_memory(stbi_uc const *buffer, int len, int **delays, int *x, int *y, int *z, int *comp, int req_comp) 
+int stbi_convert_wchar_to_utf8(char *buffer, size_t bufferlen, const wchar_t* input) 
+stbi_uc *stbi_load_from_callbacks(stbi_io_callbacks const *clbk  , void *user, int *x, int *y, int *channels_in_file, int desired_channels) 
+float *stbi_loadf_from_callbacks(stbi_io_callbacks const *clbk, void *user, int *x, int *y,  int *channels_in_file, int desired_channels) 
+stbi_us *stbi_load_16_from_callbacks(stbi_io_callbacks const *clbk, void *user, int *x, int *y, int *channels_in_file, int desired_channels) 
+int stbi_is_hdr_from_callbacks(stbi_io_callbacks const *clbk, void *user) 
+int stbi_info_from_callbacks(stbi_io_callbacks const *clbk, void *user, int *x, int *y, int *comp) 
+int stbi_is_16_bit_from_callbacks(stbi_io_callbacks const *clbk, void *user) 
+</commment>
+
+
+<comment>
+Functions for writing images
+</comment>
+
+int stbi_write_png(char const *filename, int w, int h, int comp, const void *data, int stride_in_bytes)
+int stbi_write_bmp(char const *filename, int w, int h, int comp, const void *data)
+int stbi_write_tga(char const *filename, int w, int h, int comp, const void *data)
+int stbi_write_jpg(char const *filename, int w, int h, int comp, const void *data, int quality)
+<comment>
+int stbi_write_hdr(char const *filename, int w, int h, int comp, const float *data)
+</comment>
+void stbi_flip_vertically_on_write(int flag)

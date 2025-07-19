@@ -1,0 +1,35 @@
+#include "ring.h"
+
+#include "stdlib.h"
+
+RING_FUNC(ring_myfunction)
+{
+	printf("Hello, World!\n");
+}
+
+RING_FUNC(ring_sumtwonumbers)
+{
+	double nNum1,nNum2,nSum;
+	// Check Parameters Count
+		if (RING_API_PARACOUNT != 2) {
+			RING_API_ERROR(RING_API_MISS2PARA);
+			return;
+		}
+	// Check Parameters Type
+		if ( ! (RING_API_ISNUMBER(1) && RING_API_ISNUMBER(2)) ) {
+			RING_API_ERROR(RING_API_BADPARATYPE);
+			return;
+		}
+	// Sum Numbers 
+		nNum1 = RING_API_GETNUMBER(1);
+		nNum2 = RING_API_GETNUMBER(2);
+		nSum  = nNum1 + nNum2 ;
+	// Return Output
+		RING_API_RETNUMBER(nSum);
+}
+
+RING_LIBINIT
+{
+	RING_API_REGISTER("myfunction",ring_myfunction);
+	RING_API_REGISTER("sumtwonumbers",ring_sumtwonumbers);
+}

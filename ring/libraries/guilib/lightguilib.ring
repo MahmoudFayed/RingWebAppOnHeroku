@@ -7,14 +7,8 @@
 C_USING_LIGHTGUILIB = True
 
 # Load the DLL files 
-	if iswindows()
-		SysSet ("QT_QPA_PLATFORM_PLUGIN_PATH", exefolder())
-		LoadLib("ringqt_light.dll")
-	but ismacosx()
-		LoadLib("libringqt_light.dylib")
-	but islinux()
-		LoadLib("libringqt_light.so")
-	ok
+	load "loadlibfile.ring"
+	loadlibfile("ringqt_light")
 
 # Load the files
 	load "guilibfiles.ring"

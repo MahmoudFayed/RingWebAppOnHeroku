@@ -1,4 +1,0 @@
-Try ? eval('0+1') - Miss Return command - We expect no output!
-
-Try ? eval('return 0+1') - We expect 1
-1

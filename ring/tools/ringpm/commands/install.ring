@@ -11,7 +11,7 @@ class InstallCommand
 	cPackageVersion = ""
 	lUpdate	    	= False
 
-	# Where we have our pacakge 
+	# Where we have our package 
 		lLocalPackages	   = True 
 		cPackagesLocations = exefolder()+"../tools/ringpm/local"
 	
@@ -87,7 +87,7 @@ class InstallCommand
 				ok
 			ok
 		cPackageFolderName = GetPackageFolderName(aPackageInfo)
-		see " ---> " + cPackageFolderName + nl
+		see " ---> " + cPackageFolderName + " (" + aPackageInfo[:version] + ")" + nl
 		# If we have the package ---> Return (Don't install it)
 			if lUpdate = False
 				if fexists(cMainPackagesFolder+"/"+cPackageFolderName+"/package.ring")
@@ -236,6 +236,9 @@ class InstallCommand
 				DownloadListOfFiles(aPackageInfo,:FedoraFiles)
 				DownloadListOfFilesInRingFolder(aPackageInfo,:FedoraRingFolderFiles)
 			ok
+		but isFreeBSD()
+			DownloadListOfFiles(aPackageInfo,:FreeBSDFiles)
+			DownloadListOfFilesInRingFolder(aPackageInfo,:FreeBSDRingFolderFiles)
 		but isMacOSX()
 			DownloadListOfFiles(aPackageInfo,:MacOSFiles)
 			DownloadListOfFilesInRingFolder(aPackageInfo,:MacOSRingFolderFiles)
@@ -344,7 +347,7 @@ class InstallCommand
 		eval(read(C_REGISTRYFILE))
 		# Now we have aPackagesRegistry
 		for aPackage in aPackagesRegistry	
-			if aPackage[:name] = cPackageName
+			if lower(aPackage[:name]) = lower(cPackageName)
 				# Install from registry 
 					oInstall = new InstallCommand 
 					oInstall.InstallFrom(aPackage[:ProviderUserName])

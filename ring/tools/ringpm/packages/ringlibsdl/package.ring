@@ -5,11 +5,11 @@ aPackageInfo = [
 	:developer = "Mahmoud Fayed",
 	:email = "msfclipper@yahoo.com",
 	:license = "MIT License",
-	:version = "1.0.2",
-	:ringversion = "1.13",
+	:version = "1.0.8",
+	:ringversion = "1.22",
 	:versions = 	[
 		[
-			:version = "1.0.2",
+			:version = "1.0.8",
 			:branch = "master"
 		]
 	],
@@ -26,6 +26,7 @@ aPackageInfo = [
 	],
 	:ringfolderfiles = 	[
 		"extensions/ringsdl/buildvc.bat",
+		"extensions/ringsdl/buildvc_x64.bat",
 		"extensions/ringsdl/buildgcc.sh",
 		"extensions/ringsdl/document.bat",
 		"extensions/ringsdl/gencode.bat",

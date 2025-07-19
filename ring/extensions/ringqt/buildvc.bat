@@ -1,5 +1,9 @@
+IF "%RING_QT_DIR%"=="" SET RING_QT_DIR=C:\Qt
+IF "%RING_QT_VERSION%"=="" SET RING_QT_VERSION=5.15.19
+
 setlocal enableextensions enabledelayedexpansion
-call ../../language/src/locatevc.bat auto %1
-"C:\Qt\Qt5.5.0\5.5\msvc2013\bin\qmake.exe" B:\ring\extensions\ringqt\ring_qt.pro -r -spec win32-msvc2013
-"C:\Qt\Qt5.5.0\Tools\QtCreator\bin\jom.exe" 
+call ..\..\language\build\locatevc.bat auto %1
+"%RING_QT_DIR%\%RING_QT_VERSION%\msvc2019\bin\qmake.exe" ring_qt515.pro -spec win32-msvc "CONFIG+=qtquickcompiler"
+"%RING_QT_DIR%\Tools\QtCreator\bin\jom\jom.exe"
+copy release\ringqt.dll ..\..\bin
 endlocal

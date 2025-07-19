@@ -17725,6 +17725,22 @@ RING_FUNC(ring_circleRGBA)
 }
 
 
+static void * sdl_mutex_create(void) {
+	return SDL_CreateMutex();
+}
+
+static void sdl_mutex_lock(void *mutex) {
+	SDL_LockMutex((SDL_mutex *)mutex);
+}
+
+static void sdl_mutex_unlock(void *mutex) {
+	SDL_UnlockMutex((SDL_mutex *)mutex);
+}
+
+static void sdl_mutex_destroy(void *mutex) {
+	SDL_DestroyMutex((SDL_mutex *)mutex);
+}
+
 int SDL_Thread_Function(void *pPointer) {
 	VM *pVM;
 	List *pList;
@@ -17748,8 +17764,8 @@ return ;
 	pList = ring_list_new(0) ;
 	ring_list_addpointer(pList,pPointer);
 	ring_list_addstring(pList,RING_API_GETSTRING(1));
-	ring_vm_mutexfunctions((VM *) pPointer,SDL_CreateMutex,
-SDL_LockMutex,SDL_UnlockMutex,SDL_DestroyMutex);
+	ring_vm_mutexfunctions((VM *) pPointer, sdl_mutex_create,
+	sdl_mutex_lock, sdl_mutex_unlock, sdl_mutex_destroy);
 	SDL_CreateThread(SDL_Thread_Function, RING_API_GETSTRING(2), (void *) pList);
 	
 }

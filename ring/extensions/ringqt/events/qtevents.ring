@@ -38,11 +38,12 @@ Func GenHeader aClass
 
 	# Start of code string
 	cCode = `
-/* Copyright (c) 2013-2022 Mahmoud Fayed <msfclipper@yahoo.com> */
+/* Copyright (c) 2013-2024 Mahmoud Fayed <msfclipper@yahoo.com> */
 #ifndef <T_HEADER>
 #define <T_HEADER>
 #include "ringqt.h"
 #include <<T_REALCLASSNAMEHEADER>>
+<T_CUSTOMCODEAFTERINCLUDE>
 extern "C" {
 #include "ring.h"
 }
@@ -73,6 +74,8 @@ class <T_CLASSNAME> : public <T_REALCLASSNAME>
   public slots:
 
 <T_SLOTS>
+
+<T_CUSTOMCODEATTHEEND>
 };
 
 #endif
@@ -107,7 +110,11 @@ class <T_CLASSNAME> : public <T_REALCLASSNAME>
 		cCode = substr(cCode,"<T_INITPARA>", aClass[:initpara])
 	else
 		if not aClass[:noparent] = True
-			cCode = substr(cCode,"<T_INITPARA>", "QWidget *")
+			if not aClass[:useqobject] = True
+				cCode = substr(cCode,"<T_INITPARA>", "QWidget *")
+			else 
+				cCode = substr(cCode,"<T_INITPARA>", "QObject *")
+			ok
 		else 
 			cCode = substr(cCode,"<T_INITPARA>", "")
 		ok
@@ -138,6 +145,9 @@ class <T_CLASSNAME> : public <T_REALCLASSNAME>
 	cCode = substr(cCode,"<T_GETEVENTS>", cGetEvents)
 	cCode = substr(cCode,"<T_SLOTS>", cEventsSlots)
 
+	cCode = substr(cCode,"<T_CUSTOMCODEATTHEEND>", aClass[:CustomCodeAtTheEnd])
+	cCode = substr(cCode,"<T_CUSTOMCODEAFTERINCLUDE>", aClass[:CustomCodeAfterInclude])
+
 	cFileName = lower(aClass[:name]) + ".h"
 	writefile(cHeaderFolder+cFileName,cCode)
 
@@ -145,7 +155,7 @@ Func GenSource aClass
 
 # Start of code string
 	cCode = `
-/* Copyright (c) 2013-2020 Mahmoud Fayed <msfclipper@yahoo.com> */
+/* Copyright (c) 2013-2024 Mahmoud Fayed <msfclipper@yahoo.com> */
 extern "C" {
 #include "ring.h"
 }
@@ -195,7 +205,11 @@ void <T_CLASSNAME>::geteventparameters(void)
 		cCode = substr(cCode,"<T_INITPARA>", aClass[:initpara])
 	else
 		if not aClass[:noparent] = True
-			cCode = substr(cCode,"<T_INITPARA>", "QWidget *")
+			if not aClass[:useqobject] = True
+				cCode = substr(cCode,"<T_INITPARA>", "QWidget *")
+			else 
+				cCode = substr(cCode,"<T_INITPARA>", "QObject *")
+			ok
 		else 
 			cCode = substr(cCode,"<T_INITPARA>", "")
 		ok
