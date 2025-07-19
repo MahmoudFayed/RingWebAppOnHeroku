@@ -4,7 +4,7 @@ Demo : http://testring.herokuapp.com
 
 # Ring Version
 
-This project uses Ring 1.18 
+This project uses Ring 1.23 
 
 # Heroku Stack
 
