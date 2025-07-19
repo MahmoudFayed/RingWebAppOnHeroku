@@ -8,7 +8,7 @@ This project uses Ring 1.23
 
 # Heroku Stack
 
-This project tested using Heroku-22 (Ubuntu 22.04)
+This project tested using Heroku-24 (Ubuntu 24.04)
 
 # Usage
 
