@@ -1,7 +1,5 @@
 Deploying Ring web application on Heroku (https://www.heroku.com/)
 
-Demo : http://testring.herokuapp.com
-
 # Ring Version
 
 This project uses Ring 1.23 
